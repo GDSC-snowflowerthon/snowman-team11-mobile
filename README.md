@@ -11,7 +11,7 @@
    한 PR에서 모든걸 다 하려고 하지 말아요
 
 ### Branch Convention
-`feat/#{이슈 번호}` ex) feat/#3, fix/#4 ...
+`feat/#{이슈 번호}` ex) feat/#3, fix/#4 ...
 
 브랜치를 새로 생성할 때에는 꼭 최신 버전의 main 브랜치를 기점으로 생성하기
 
