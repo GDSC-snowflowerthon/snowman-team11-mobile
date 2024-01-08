@@ -31,11 +31,11 @@
 
 ### ISSUE Convention
 `[작업유형] 작업내용`
-ex) [FEAT] 리뷰 목록 
+ex) [Feat] 리뷰 목록 
 
 ### PR Convention
 `[작업유형/#{이슈번호}] 작업내용`
-ex) [FEAT/#3] 리뷰 쓰기 구현 완료  
+ex) [Feat/#3] 리뷰 쓰기 구현 완료  
 
 
 
