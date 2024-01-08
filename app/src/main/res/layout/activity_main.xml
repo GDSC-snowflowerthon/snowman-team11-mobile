@@ -25,7 +25,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu">
-        <!--        app:itemIconTint="@color/tab_selection_color"-->
-        <!--        app:itemTextColor="@color/tab_selection_color">-->
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 </androidx.constraintlayout.widget.ConstraintLayout>
