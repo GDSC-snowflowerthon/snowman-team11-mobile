@@ -7,14 +7,16 @@
 2. issue는 큰 기능이나 한 화면 기준으로 큰 단위의 작업
 3. PR은 작업 분량으로 정상작동 내용이 있다면 머지하는 식으로 작은 단위의 작업
 4. 커밋 하나라도 했으면 PR 바로 하기
+5. 깃헙 플로우의 생명은 빠른 merge (작은 구현 단위로 PR을 끊읍시다!)  
+   한 PR에서 모든걸 다 하려고 하지 말아요
 
 ### Branch Convention
-`feat/{구현 기능}` ex) feat/review, feat/login, feat/main ...
+`{작업유형}/#{이슈 번호}` ex) feat/#3, fix/#4 ...
 
 브랜치를 새로 생성할 때에는 꼭 최신 버전의 main 브랜치를 기점으로 생성하기
 
 ### Commit Message Convention
-`작업유형: 작업내용 ` ex) add: login 파일 추가
+`{작업유형}: {작업내용} ` ex) add: login 파일 추가
 
 - 파일 추가 : add
 - 버그 수정 : fix
@@ -28,12 +30,12 @@
 
 
 ### ISSUE Convention
-`[작업유형] 작업내용`
-ex) [FEAT] 리뷰 목록 
+`[{작업유형}] {작업내용}`
+ex) [Feat] 리뷰 목록 
 
 ### PR Convention
-`[작업유형] 작업내용`
-ex) [FEAT] 리뷰 쓰기 구현 완료  
+`[{작업유형}/#{이슈번호}] 작업내용`
+ex) [Feat/#3] 리뷰 쓰기 구현 완료  
 
 
 
