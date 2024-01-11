@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.tabs.TabLayoutMediator
 import com.snowflowerthon.snowman.databinding.FragmentVoteBinding
-import com.snowflowerthon.snowman.vote.category.BottomSheetFragment
+import com.snowflowerthon.snowman.vote.category.TabPagerAdapter
 
 class VoteFragment : BottomSheetDialogFragment() {
 
@@ -26,11 +27,15 @@ class VoteFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btn.setOnClickListener {
-            // BottomSheetFragment를 띄우기
-            val bottomSheetFragment = BottomSheetFragment()
-            bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
-        }
+        // 탭 레이아웃의 탭 이름을 정의합니다. 여기서는 "Tab 1"과 "Tab 2"로 설정하였습니다.
+        val tabNames = listOf("Tab 1", "Tab 2")
+
+        binding.myPageviewPager.adapter = TabPagerAdapter(this, tabNames.size)
+
+        // 뷰페이저와 탭 레이아웃을 연결합니다.
+        TabLayoutMediator(binding.myPagetabLayout, binding.myPageviewPager) { tab, position ->
+            tab.text = tabNames[position]
+        }.attach()
     }
 
     override fun onDestroyView() {
@@ -38,3 +43,4 @@ class VoteFragment : BottomSheetDialogFragment() {
         _binding = null
     }
 }
+
