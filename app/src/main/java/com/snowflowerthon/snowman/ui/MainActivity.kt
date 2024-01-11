@@ -2,14 +2,11 @@ package com.snowflowerthon.snowman.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
-<<<<<<< HEAD:app/src/main/java/com/snowflowerthon/snowman/MainActivity.kt
-import com.kakao.sdk.common.util.Utility
-=======
 import com.snowflowerthon.snowman.R
 import com.snowflowerthon.snowman.ui.vote.VoteFragment
->>>>>>> 42080928659506ee9c3b139ce7fe7460b99f8c1d:app/src/main/java/com/snowflowerthon/snowman/ui/MainActivity.kt
+import com.kakao.sdk.common.util.Utility
+import android.util.Log
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
