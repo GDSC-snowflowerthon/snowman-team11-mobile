@@ -6,4 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+    <ImageView
+        android:id="@+id/iv_appLogo"
+        android:layout_width="230dp"
+        android:layout_height="300dp"
+        android:src="@drawable/img_app_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="160dp"/>
+
+    <ImageButton
+        android:id="@+id/btn_kakaoLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:contentDescription="@string/com_kakao_talk_chooser_text"
+        android:src="@drawable/img_kakao_login_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_appLogo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
