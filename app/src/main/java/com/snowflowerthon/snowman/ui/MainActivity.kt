@@ -1,11 +1,13 @@
-package com.snowflowerthon.snowman
+package com.snowflowerthon.snowman.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.snowflowerthon.snowman.vote.VoteFragment
+import com.snowflowerthon.snowman.R
+import com.snowflowerthon.snowman.ui.vote.PenguinInteractionListener
+import com.snowflowerthon.snowman.ui.vote.VoteFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), PenguinInteractionListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -40,4 +42,9 @@ class MainActivity : AppCompatActivity() {
             selectedItemId = R.id.tab_home
         }
     }
+
+    override fun dressPenguinWithScarf() {
+
+        val voteFragment = supportFragmentManager.findFragmentByTag(VoteFragment::class.java.simpleName) as? VoteFragment
+        voteFragment?.dressPenguinWithScarf()    }
 }

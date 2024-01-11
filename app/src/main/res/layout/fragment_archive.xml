@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/BlueLight20"
-    tools:context=".ArchiveFragment">
+    tools:context=".ui.ArchiveFragment">
 
     <!-- 폰트 크기, 굵기, 색깔을 맞춰봐야함 -->
     <TextView

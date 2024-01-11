@@ -1,7 +1,9 @@
-package com.snowflowerthon.snowman.vote.category
+package com.snowflowerthon.snowman.ui.vote.category
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.snowflowerthon.snowman.ui.vote.category.ClothesFragment
+import com.snowflowerthon.snowman.ui.vote.category.ItemFragment
 
 class TabPagerAdapter(fragment: Fragment, private val numTabs: Int) : FragmentStateAdapter(fragment) {
 

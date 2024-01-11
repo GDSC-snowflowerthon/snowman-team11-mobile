@@ -1,16 +1,14 @@
-package com.snowflowerthon.snowman.vote.category
+package com.snowflowerthon.snowman.ui.vote.category
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.snowflowerthon.snowman.R
+import androidx.lifecycle.ViewModelProvider
 import com.snowflowerthon.snowman.databinding.FragmentClothesBinding
-import com.snowflowerthon.snowman.databinding.FragmentVoteBinding
-import com.snowflowerthon.snowman.vote.PenguinInteractionListener
+import com.snowflowerthon.snowman.ui.vote.SharedViewModel
 
 
 class ClothesFragment : Fragment() {
@@ -19,7 +17,7 @@ class ClothesFragment : Fragment() {
     private var _binding: FragmentClothesBinding? = null
     private val binding get() = _binding!!
 
-    private var interactionListener: PenguinInteractionListener? = null
+    private lateinit var sharedViewModel: SharedViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,31 +28,22 @@ class ClothesFragment : Fragment() {
         return binding.root
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is PenguinInteractionListener) {
-            interactionListener = context
-        } else {
-            throw RuntimeException("$context must implement PenguinInteractionListener")
-        }
-    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
         // 목도리 아이템 클릭 이벤트 처리
         binding.btnLongPadding.setOnClickListener {
             // VoteFragment에 알리기
-            interactionListener?.dressPenguinWithScarf()
+            updateVariableX(true)
             Log.d("AFragment", "ImageButton Clicked")
 
         }
     }
 
 
-
-    // VoteFragment에서 호출할 수 있도록 설정
-    fun setInteractionListener(listener: PenguinInteractionListener) {
-        interactionListener = listener
+    private fun updateVariableX(newValue: Boolean) {
+        sharedViewModel.variableX.value = newValue
     }
 
     override fun onDestroyView() {
