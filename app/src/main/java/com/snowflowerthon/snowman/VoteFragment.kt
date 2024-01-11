@@ -13,7 +13,7 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [VoteFragment.newInstance] factory method to
+ *  * Use the [VoteFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
 class VoteFragment : Fragment() {
