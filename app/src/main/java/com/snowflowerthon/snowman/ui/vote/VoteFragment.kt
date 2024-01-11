@@ -6,22 +6,23 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
 import com.snowflowerthon.snowman.R
+import com.snowflowerthon.snowman.data.ApiService
 import com.snowflowerthon.snowman.data.RetrofitClient
-import com.snowflowerthon.snowman.data.apiService
+import com.snowflowerthon.snowman.data.dto.BaseResponseDto
+import com.snowflowerthon.snowman.data.dto.request.VoteRequsetDto
+import com.snowflowerthon.snowman.data.enums.Clothes
 import com.snowflowerthon.snowman.databinding.FragmentVoteBinding
 import com.snowflowerthon.snowman.ui.vote.category.TabPagerAdapter
+import retrofit2.Call
 
-interface PenguinInteractionListener {
-    fun dressPenguinWithScarf()
-}
 
-class VoteFragment : Fragment(), PenguinInteractionListener {
+
+class VoteFragment : Fragment() {
 
 
     private var _binding: FragmentVoteBinding? = null
@@ -52,9 +53,25 @@ class VoteFragment : Fragment(), PenguinInteractionListener {
         }.attach()
 
 
+
+        val codi = VoteRequsetDto(Clothes.NONE,Clothes.NONE,Clothes.COAT,Clothes.NONE)
+
         binding.btnCustomSave.setOnClickListener {
-            val retrofitAPI = RetrofitClient.getInstance().create(apiService::class.java)
-            retrofitAPI.voteClothes()
+            val retrofitAPI = RetrofitClient.getInstance().create(ApiService::class.java)
+            retrofitAPI.voteClothes(1, codi).enqueue(object : retrofit2.Callback<BaseResponseDto<String?>> {
+                override fun onResponse(call: Call<BaseResponseDto<String?>>, response: retrofit2.Response<BaseResponseDto<String?>>) {
+                    if (response.isSuccessful) {
+                        val baseResponse = response.body()
+                        // TODO: 서버 응답을 처리
+                    } else {
+                        // TODO: 서버 에러 처리
+                    }
+                }
+
+                override fun onFailure(call: Call<BaseResponseDto<String?>>, t: Throwable) {
+                    // TODO: 통신 실패 처리
+                }
+            })
         }
 
         // SharedViewModel을 가져옵니다.
@@ -77,11 +94,5 @@ class VoteFragment : Fragment(), PenguinInteractionListener {
         _binding = null
     }
 
-    // VoteFragment에게 펭귄에게 목도리를 씌우는 동작 수행
-    override fun dressPenguinWithScarf() {
-        // 원하는 동작을 여기에 추가하세요
-        Log.d("VoteFragment","롱패")
-        Toast.makeText(requireContext(), "펭귄에게 목도리를 씌웠습니다!", Toast.LENGTH_SHORT).show()
-    }
 }
 
