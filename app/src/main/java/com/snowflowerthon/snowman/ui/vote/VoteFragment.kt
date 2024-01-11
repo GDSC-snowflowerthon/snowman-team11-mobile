@@ -55,21 +55,25 @@ class VoteFragment : Fragment() {
 
 
         val codi = VoteRequsetDto(Clothes.NONE,Clothes.NONE,Clothes.COAT,Clothes.NONE)
-
+        val token ="Bearer eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjIsIlJPTEVfVVNFUiI6IlVTRVIiLCJpYXQiOjE3MDQ5OTc4OTEsImV4cCI6MTcwNTcxNzg5MX0.kEAqc6kJRgr-vC10aYx0_smMevzsP5wGwAeJPHq-LQrypEj3shW5UH6d13hSeHSfhcTTk-P_cKVuqDJq-6NjJA"
         binding.btnCustomSave.setOnClickListener {
             val retrofitAPI = RetrofitClient.getInstance().create(ApiService::class.java)
-            retrofitAPI.voteClothes(1, codi).enqueue(object : retrofit2.Callback<BaseResponseDto<String?>> {
+            retrofitAPI.voteClothes(token,1, 1, codi).enqueue(object : retrofit2.Callback<BaseResponseDto<String?>> {
                 override fun onResponse(call: Call<BaseResponseDto<String?>>, response: retrofit2.Response<BaseResponseDto<String?>>) {
                     if (response.isSuccessful) {
                         val baseResponse = response.body()
                         // TODO: 서버 응답을 처리
+                        Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
                     } else {
                         // TODO: 서버 에러 처리
+                        Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
                     }
                 }
 
                 override fun onFailure(call: Call<BaseResponseDto<String?>>, t: Throwable) {
                     // TODO: 통신 실패 처리
+//                    Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
+
                 }
             })
         }
