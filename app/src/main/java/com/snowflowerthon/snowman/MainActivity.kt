@@ -3,6 +3,7 @@ package com.snowflowerthon.snowman
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.snowflowerthon.snowman.vote.VoteFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
