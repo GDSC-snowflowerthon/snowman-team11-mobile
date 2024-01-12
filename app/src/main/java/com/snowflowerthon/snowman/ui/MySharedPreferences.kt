@@ -7,11 +7,11 @@ object MySharedPreferences {
 
     private val MY_ACCOUNT: String = "account"
 
-    fun setProviderId(context: Context, input: String) {
+    fun setProviderId(context: Context, input: Long?) {
         val prefs: SharedPreferences =
             context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = prefs.edit()
-        editor.putString("MY_PROVIDERID", input)
+        editor.putString("MY_PROVIDERID", input.toString())
         editor.commit()
     }
 

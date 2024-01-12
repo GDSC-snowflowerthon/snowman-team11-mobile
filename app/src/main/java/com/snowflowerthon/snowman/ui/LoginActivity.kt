@@ -14,10 +14,13 @@ import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import com.snowflowerthon.snowman.data.ApiService
 import com.snowflowerthon.snowman.data.RetrofitClient
-import com.snowflowerthon.snowman.data.dto.request.LoginRequsetDto
+import com.snowflowerthon.snowman.data.dto.BaseResponseDto
+import com.snowflowerthon.snowman.data.dto.request.LoginRequestDto
+import com.snowflowerthon.snowman.data.dto.response.LoginResponseDto
 import com.snowflowerthon.snowman.databinding.ActivityLoginBinding
 import com.snowflowerthon.snowman.databinding.ActivityLoginBinding.inflate
 import kotlinx.coroutines.launch
+import retrofit2.Call
 
 
 class LoginActivity : AppCompatActivity() {
@@ -29,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
         binding = inflate(layoutInflater)
         setContentView(binding.root)
 
-        // SharedPreferences 안에 값이 저장되어 있을 때-> Login 패스하기
+        /*// SharedPreferences 안에 값이 저장되어 있을 때-> Login 패스하기
         if (MySharedPreferences.getProviderId(this).isNotBlank()) {
             // SharedPreferences 안에 값이 저장되어 있을 때 -> MainActivity로 이동
             Toast.makeText(
@@ -41,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
+*/
         val context = this
 
 
@@ -71,18 +74,35 @@ class LoginActivity : AppCompatActivity() {
             if (user != null) {
                 // 유저의 아이디. 프로바이더아이디 받아옴
                 Log.d(TAG, "invoke: id =" + user.id)
-                val providerID = user.id.toString()
+                val providerID = user.id
                 MySharedPreferences.setProviderId(this@LoginActivity, providerID)
 
                 val intent = Intent(this, MainActivity::class.java)
 
                 val retrofitAPI = RetrofitClient.getInstance().create(ApiService::class.java)
+                retrofitAPI.login(LoginRequestDto(providerID)).enqueue(object : retrofit2.Callback<BaseResponseDto<LoginResponseDto?>> {
+                    override fun onResponse(call: Call<BaseResponseDto<LoginResponseDto?>>, response: retrofit2.Response<BaseResponseDto<LoginResponseDto?>>) {
+                        if (response.isSuccessful) {
+                            // TODO: 서버 응답을 처리
+                            Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
+                            Toast.makeText(this@LoginActivity, "로그인이 완료되었어요.", Toast.LENGTH_SHORT).show()
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            // TODO: 서버 에러 처리
+                            Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
+                            Toast.makeText(this@LoginActivity, "로그인을 실패했어요.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
 
+                    override fun onFailure(call: Call<BaseResponseDto<LoginResponseDto?>>, t: Throwable) {
+                        // TODO: 통신 실패 처리
+//                    Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
+                        Toast.makeText(this@LoginActivity, "로그인을 실패했어요.", Toast.LENGTH_SHORT).show()
+                    }
+                })
             }
 
-            val providerId = MySharedPreferences.getProviderId(this@LoginActivity).toLong()
-            val retrofitAPI = RetrofitClient.getInstance().create(ApiService::class.java)
-            retrofitAPI.loginKakao(LoginRequsetDto(providerId))
         }
     }
 }
