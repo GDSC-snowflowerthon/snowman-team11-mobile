@@ -24,7 +24,6 @@ import retrofit2.Call
 
 class VoteFragment : Fragment() {
 
-
     var topWear = Clothes.NEAT
     var neckWear = Clothes.NONE
     var headWear = Clothes.NONE
@@ -66,8 +65,6 @@ class VoteFragment : Fragment() {
             binding.ivTopWear.setImageResource(R.drawable.img_neat)
             binding.ivHeadWear.setImageResource(R.drawable.img_empty)
             binding.ivNeckWear.setImageResource(R.drawable.img_empty)
-
-
 
         }
 
