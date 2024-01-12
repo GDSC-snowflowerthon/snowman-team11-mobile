@@ -14,7 +14,6 @@ interface ApiService {
     @POST("/api/v1/weathers/{regionId}/poll")
     fun voteClothes(@Header("Authorization") token: String,
                     @Path("regionId") regionId: Long,
-                    @Query("userId") userId: Long,
                     @Body request: VoteRequsetDto)
             : Call<BaseResponseDto<String?>>
 

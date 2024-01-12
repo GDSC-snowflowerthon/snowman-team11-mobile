@@ -21,14 +21,19 @@ import com.snowflowerthon.snowman.ui.vote.category.TabPagerAdapter
 import retrofit2.Call
 
 
-
 class VoteFragment : Fragment() {
+
+
+    val topWear = Clothes.NEAT
+    val neckWear = Clothes.NONE
+    val headWear = Clothes.NONE
+    var outerWear = Clothes.COAT
 
 
     private var _binding: FragmentVoteBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var sharedViewModel: SharedViewModel
+    private lateinit var sharedViewModel: VoteViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +49,7 @@ class VoteFragment : Fragment() {
 //        // 탭 레이아웃의 탭 이름을 정의합니다. 여기서는 "Tab 1"과 "Tab 2"로 설정하였습니다.
 
 
-        val tabNames = listOf("아우터", "아이템")
+        val tabNames = listOf("아우터", "상의","아이템")
         binding.myPageviewPager.adapter = TabPagerAdapter(this, tabNames.size)
 
         // 뷰페이저와 탭 레이아웃을 연결합니다.
@@ -52,13 +57,13 @@ class VoteFragment : Fragment() {
             tab.text = tabNames[position]
         }.attach()
 
+        val codi = VoteRequsetDto(headWear,neckWear,outerWear,topWear)
+        val token ="Bearer eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjIsIlJPTEVfVVNFUiI6IlVTRVIiLCJpYXQiOjE3MDUwMDA4NTksImV4cCI6MTcwNTcyMDg1OX0.bctp9AioWRyjIK_wTTJR-3ahM9LpqfO1AqqsphtLBScHF0w8jG-n1uIkexsVHHjh5jA0fx4A-7RaPIkOQfkA5w"
 
 
-        val codi = VoteRequsetDto(Clothes.NONE,Clothes.NONE,Clothes.COAT,Clothes.NONE)
-        val token ="Bearer eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjIsIlJPTEVfVVNFUiI6IlVTRVIiLCJpYXQiOjE3MDQ5OTc4OTEsImV4cCI6MTcwNTcxNzg5MX0.kEAqc6kJRgr-vC10aYx0_smMevzsP5wGwAeJPHq-LQrypEj3shW5UH6d13hSeHSfhcTTk-P_cKVuqDJq-6NjJA"
         binding.btnCustomSave.setOnClickListener {
             val retrofitAPI = RetrofitClient.getInstance().create(ApiService::class.java)
-            retrofitAPI.voteClothes(token,1, 1, codi).enqueue(object : retrofit2.Callback<BaseResponseDto<String?>> {
+            retrofitAPI.voteClothes(token,1,  codi).enqueue(object : retrofit2.Callback<BaseResponseDto<String?>> {
                 override fun onResponse(call: Call<BaseResponseDto<String?>>, response: retrofit2.Response<BaseResponseDto<String?>>) {
                     if (response.isSuccessful) {
                         val baseResponse = response.body()
@@ -79,16 +84,30 @@ class VoteFragment : Fragment() {
         }
 
         // SharedViewModel을 가져옵니다.
-        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        sharedViewModel = ViewModelProvider(requireActivity()).get(VoteViewModel::class.java)
 
         // variableX를 감시하고, 값이 변경될 때마다 처리할 로직을 구현합니다.
-        sharedViewModel.variableX.observe(viewLifecycleOwner, Observer { newValue ->
-            // newValue로부터 필요한 작업을 수행합니다.
-            // 예: newValue가 true이면 어떤 동작을 수행하고, false이면 다른 동작을 수행
+        // selectedOuterwear를 감시하고, 값이 변경될 때마다 처리할 로직을 구현합니다.
+        sharedViewModel.selectedOuterwear.observe(viewLifecycleOwner, Observer { selectedType ->
+            when (selectedType) {
+                Clothes.COAT -> {
+                    outerWear=Clothes.COAT
+                    binding.ivOuterWear.setImageResource(R.drawable.img_coat)
 
-            Log.d("VoteFragment","패딩을 눌러버림")
-            binding.ivCloth.setImageResource(R.drawable.img_coat)
+                }
+                Clothes.LONG_PADDING -> {
+                    outerWear=Clothes.LONG_PADDING
+                    binding.ivOuterWear.setImageResource(R.drawable.img_long_padding)
 
+                }
+                Clothes.SHORT_PADDING -> {
+                    outerWear=Clothes.SHORT_PADDING
+                    binding.ivOuterWear.setImageResource(R.drawable.img_short_padding)
+
+                }
+
+                else -> {Clothes.SHORT_PADDING}
+            }
         })
 
     }
