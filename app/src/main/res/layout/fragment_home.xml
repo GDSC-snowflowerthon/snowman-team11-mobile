@@ -1,14 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@drawable/img_home_background">
+
+
+        <!-- 현재 시간, 기온, 날짜 -->
+        <TextView
+            android:id="@+id/currentInfoText"
+            android:layout_width="256dp"
+            android:layout_height="78dp"
+            android:text="@string/hello_blank_fragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="78dp" />
+
+        <!-- 현재 시간대의 펭귄 코디 (디폴트 + 투표 반영) -->
+        <ImageView
+            android:id="@+id/currentPenguin"
+            android:layout_width="match_parent"
+            android:layout_height="669dp"
+            android:src="@drawable/img_base"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 다음 시간대의 정보와 디폴트 코디 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/nextPenguins"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="0dp">
+
+            <!-- 현재 이후 첫번째 시간대의 정보 텍스트 (날짜, 시간대, 최저/최대 기온) -->
+            <TextView
+                android:id="@+id/nextInfoText1"
+                android:layout_width="79dp"
+                android:layout_height="35dp"
+                android:text="TextView"
+                tools:layout_editor_absoluteX="38dp"
+                tools:layout_editor_absoluteY="20dp" />
+
+            <!-- 현재 이후 첫번째 시간대의 펭귄 코디 (디폴트 값) -->
+            <ImageView
+                android:id="@+id/nextPenguin1"
+                android:layout_width="117dp"
+                android:layout_height="170dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_base"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="55dp" />
+
+            <!-- 현재 이후 두번째 시간대의 정보 텍스트 (날짜, 시간대, 최저/최대 기온) -->
+            <TextView
+                android:id="@+id/nextInfoText2"
+                android:layout_width="79dp"
+                android:layout_height="35dp"
+                android:text="TextView"
+                tools:layout_editor_absoluteX="166dp"
+                tools:layout_editor_absoluteY="20dp" />
+
+            <!-- 현재 이후 두번째 시간대의 펭귄 코디 (디폴트 값) -->
+            <ImageView
+                android:id="@+id/nextPenguin2"
+                android:layout_width="117dp"
+                android:layout_height="170dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_base"
+                tools:layout_editor_absoluteX="147dp"
+                tools:layout_editor_absoluteY="55dp" />
+
+            <!-- 현재 이후 세번째 시간대의 펭귄 코디 (디폴트 값) -->
+            <TextView
+                android:id="@+id/nextInfoText3"
+                android:layout_width="79dp"
+                android:layout_height="35dp"
+                android:text="TextView"
+                tools:layout_editor_absoluteX="297dp"
+                tools:layout_editor_absoluteY="20dp" />
+
+            <!-- 현재 이후 세번째 시간대의 펭귄 코디 (디폴트 값) -->
+            <ImageView
+                android:id="@+id/nextPenguin3"
+                android:layout_width="117dp"
+                android:layout_height="170dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_base"
+                tools:layout_editor_absoluteX="278dp"
+                tools:layout_editor_absoluteY="55dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
