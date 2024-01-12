@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -27,7 +28,7 @@ class VoteFragment : Fragment() {
     var topWear = Clothes.NEAT
     var neckWear = Clothes.NONE
     var headWear = Clothes.NONE
-    var outerWear = Clothes.COAT
+    var outerWear = Clothes.NONE
 
 
     private var _binding: FragmentVoteBinding? = null
@@ -62,9 +63,11 @@ class VoteFragment : Fragment() {
 
         binding.btnCustomReset.setOnClickListener {
             binding.ivOuterWear.setImageResource(R.drawable.img_empty)
-            binding.ivNeckWear.setImageResource(R.drawable.img_empty)
+            binding.ivTopWear.setImageResource(R.drawable.img_neat)
             binding.ivHeadWear.setImageResource(R.drawable.img_empty)
             binding.ivNeckWear.setImageResource(R.drawable.img_empty)
+
+
 
         }
 
@@ -76,16 +79,18 @@ class VoteFragment : Fragment() {
                         val baseResponse = response.body()
                         // TODO: 서버 응답을 처리
                         Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
+                        Toast.makeText(context, "투표가 완료되었어요.", Toast.LENGTH_SHORT).show()
                     } else {
                         // TODO: 서버 에러 처리
                         Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
+                        Toast.makeText(context, "투표가 실패했어요.", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onFailure(call: Call<BaseResponseDto<String?>>, t: Throwable) {
                     // TODO: 통신 실패 처리
 //                    Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
-
+                    Toast.makeText(context, "투표가 실패했어요.", Toast.LENGTH_SHORT).show()
                 }
             })
         }
@@ -149,10 +154,9 @@ class VoteFragment : Fragment() {
                 Clothes.LONG_SLEEVE -> {
                     topWear=Clothes.LONG_SLEEVE
                     binding.ivTopWear.setImageResource(R.drawable.img_long_shirt)
-
                 }
 
-                else -> {Clothes.LONG_SLEEVE}
+                else -> {Clothes.NEAT}
             }
         })
 
