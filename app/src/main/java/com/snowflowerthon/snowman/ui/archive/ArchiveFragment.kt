@@ -26,7 +26,6 @@ class ArchiveFragment : Fragment() {
     private val binding get() = _binding!!
 
 
-
     private lateinit var recyclerView: RecyclerView
     private lateinit var gridAdapter: GridAdapter
     override fun onCreateView(
