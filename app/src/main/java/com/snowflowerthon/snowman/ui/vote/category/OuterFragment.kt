@@ -36,25 +36,31 @@ class OuterFragment : Fragment() {
         // 목도리 아이템 클릭 이벤트 처리
         binding.btnLongPadding.setOnClickListener {
             // VoteFragment에 알리기
-            updateCodi(Clothes.LONG_PADDING)
+            updateOuter(Clothes.LONG_PADDING)
             Log.d("AFragment", "LONG_PADDING Clicked")
         }
 
         binding.btnShortPadding.setOnClickListener {
             // VoteFragment에 알리기
-            updateCodi(Clothes.SHORT_PADDING)
+            updateOuter(Clothes.SHORT_PADDING)
             Log.d("AFragment", "LONG_PADDING Clicked")
         }
 
         binding.btnCoat.setOnClickListener {
             // VoteFragment에 알리기
-            updateCodi(Clothes.COAT)
+            updateOuter(Clothes.COAT)
+            Log.d("AFragment", "LONG_PADDING Clicked")
+        }
+
+        binding.btnNone.setOnClickListener {
+            // VoteFragment에 알리기
+            updateOuter(Clothes.NONE)
             Log.d("AFragment", "LONG_PADDING Clicked")
         }
     }
 
 
-    private fun updateCodi(newValue: Clothes) {
+    private fun updateOuter(newValue: Clothes) {
         sharedViewModel.selectedOuterwear.value = newValue
     }
 

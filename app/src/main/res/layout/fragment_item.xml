@@ -17,32 +17,36 @@
 
 
         <ImageButton
+            android:id="@+id/btn_balaclava"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@android:color/transparent"
+            android:background="@drawable/selector_resource"
             android:scaleType="fitCenter"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/img_balaclava" />
+
         <ImageButton
+            android:id="@+id/btn_ear"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@android:color/transparent"
+            android:background="@drawable/selector_resource"
             android:scaleType="fitCenter"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/img_ear" />
 
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            android:src="@drawable/img_hand" />
-
 
         <ImageButton
+            android:id="@+id/btn_none"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@android:color/transparent"
+            android:background="@drawable/selector_resource"
             android:scaleType="fitCenter"
-            android:src="@drawable/img_muffler" />
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/img_empty" />
+
 
     </GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

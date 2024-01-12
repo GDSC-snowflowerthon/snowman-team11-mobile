@@ -14,8 +14,8 @@ class TabPagerAdapter(fragment: Fragment, private val numTabs: Int) : FragmentSt
         return when (position) {
             0 -> OuterFragment()
             1 -> InnerFragment()
-            2 -> ItemFragment()
-//            3 -> Tab4Fragment()
+            2 -> MufflerFragment()
+            3 -> ItemFragment()
             else -> throw IllegalArgumentException("Invalid tab position: $position")
         }
     }
