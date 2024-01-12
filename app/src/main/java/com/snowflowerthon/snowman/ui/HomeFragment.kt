@@ -1,11 +1,20 @@
 package com.snowflowerthon.snowman.ui
 
+import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import com.snowflowerthon.snowman.R
+import com.snowflowerthon.snowman.databinding.FragmentHomeBinding
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,12 +39,35 @@ class HomeFragment : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val handler = Handler(Looper.getMainLooper())
+
+        //val location =
+        val dateTimeFormat = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm:ss")
+        var now = LocalDateTime.now().format(dateTimeFormat)
+
+        binding.tvCurrentInfo.text = now
+
+        val updateDuringRuntime = object : Runnable {
+            override fun run() {
+                // Update the time in the TextView
+                binding.tvCurrentInfo.text = LocalDateTime.now().format(dateTimeFormat)
+
+                // Schedule the next update in 1 second (1000 milliseconds)
+                handler.postDelayed(this, 1000)
+            }
+        }
+
+        handler.postDelayed(updateDuringRuntime, 1000)
+
+        // Inflate the layout for this fragment
+        return binding.root
     }
 
     companion object {
