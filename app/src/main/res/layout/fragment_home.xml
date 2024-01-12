@@ -50,40 +50,40 @@
     <!-- 현재 시간, 기온, 날짜 -->
     <ImageView
         android:id="@+id/iv_currentPenguin"
-        android:layout_width="241dp"
-        android:layout_height="427dp"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
         android:src="@drawable/img_base"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_location" />
     <ImageView
         android:id="@+id/iv_current_hand"
-        android:layout_width="241dp"
-        android:layout_height="427dp"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
         android:src="@drawable/img_empty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_location" />
     <ImageView
         android:id="@+id/iv_current_topWear"
-        android:layout_width="241dp"
-        android:layout_height="427dp"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
         android:src="@drawable/img_empty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_location" />
     <ImageView
         android:id="@+id/iv_current_headWear"
-        android:layout_width="241dp"
-        android:layout_height="427dp"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
         android:src="@drawable/img_empty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_location" />
     <ImageView
         android:id="@+id/iv_current_outerWear"
-        android:layout_width="241dp"
-        android:layout_height="427dp"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
         android:src="@drawable/img_empty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,8 +91,8 @@
 
     <ImageView
         android:id="@+id/iv_current_neckWear"
-        android:layout_width="241dp"
-        android:layout_height="427dp"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
         android:src="@drawable/img_empty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,12 +100,13 @@
 
     <TextView
         android:id="@+id/tv_location"
+        android:includeFontPadding="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="78dp"
+        android:layout_marginTop="40dp"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/H1"
+        style="@style/H2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -114,7 +115,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/iv_currentPenguin">
+        app:layout_constraintTop_toBottomOf="@+id/tv_location">
 
 
         <ImageView
@@ -144,8 +145,7 @@
         android:layout_width="match_parent"
         android:layout_height="240dp"
         android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="-27dp">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -159,10 +159,12 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginEnd="20dp">
 
                 <TextView
                     style="@style/Caption1"
+                    android:includeFontPadding="false"
                     android:textColor="@color/BlueDark40"
                     android:id="@+id/tv_nextInfoText1"
                     android:layout_width="wrap_content"
@@ -172,6 +174,7 @@
 
                 <TextView
                     style="@style/H4"
+                    android:includeFontPadding="false"
                     android:textColor="@color/BlueDark40"
                     android:id="@+id/tv_temperature1"
                     android:layout_width="wrap_content"
@@ -183,34 +186,34 @@
 
                     <ImageView
                         android:id="@+id/iv_nextPenguin1"
-                        android:layout_width="117dp"
-                        android:layout_height="170dp"
+                        android:layout_width="80dp"
+                        android:layout_height="120dp"
                         android:gravity="center"
                         android:src="@drawable/img_base" />
 
                     <ImageView
                         android:id="@+id/iv_topWear1"
-                        android:layout_width="117dp"
-                        android:layout_height="170dp"
+                        android:layout_width="80dp"
+                        android:layout_height="120dp"
                         android:gravity="center"
                         android:src="@drawable/img_empty" />
                     <ImageView
                         android:id="@+id/iv_headWear1"
-                        android:layout_width="117dp"
-                        android:layout_height="170dp"
+                        android:layout_width="80dp"
+                        android:layout_height="120dp"
                         android:gravity="center"
                         android:src="@drawable/img_empty" />
 
                     <ImageView
                         android:id="@+id/iv_outerWear1"
-                        android:layout_width="117dp"
-                        android:layout_height="170dp"
+                        android:layout_width="80dp"
+                        android:layout_height="120dp"
                         android:gravity="center"
                         android:src="@drawable/img_empty" />
                     <ImageView
                         android:id="@+id/iv_neckWear1"
-                        android:layout_width="117dp"
-                        android:layout_height="170dp"
+                        android:layout_width="80dp"
+                        android:layout_height="120dp"
                         android:gravity="center"
                         android:src="@drawable/img_empty" />
                 </FrameLayout>
@@ -221,11 +224,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginEnd="20dp">
 
 
                 <TextView
                     style="@style/Caption1"
+                    android:includeFontPadding="false"
                     android:textColor="@color/BlueDark40"
                     android:id="@+id/tv_nextInfoText2"
                     android:layout_width="wrap_content"
@@ -238,6 +243,7 @@
 
                 <TextView
                     style="@style/H4"
+                    android:includeFontPadding="false"
                     android:textColor="@color/BlueDark40"
                     android:id="@+id/tv_temperature2"
                     android:layout_width="wrap_content"
@@ -250,34 +256,34 @@
 
                     <ImageView
                         android:id="@+id/iv_nextPenguin2"
-                        android:layout_width="117dp"
-                        android:layout_height="170dp"
+                        android:layout_width="80dp"
+                        android:layout_height="120dp"
                         android:gravity="center"
                         android:src="@drawable/img_base" />
 
                     <ImageView
                         android:id="@+id/iv_topWear2"
-                        android:layout_width="117dp"
-                        android:layout_height="170dp"
+                        android:layout_width="80dp"
+                        android:layout_height="120dp"
                         android:gravity="center"
                         android:src="@drawable/img_empty" />
                     <ImageView
                         android:id="@+id/iv_headWear2"
-                        android:layout_width="117dp"
-                        android:layout_height="170dp"
+                        android:layout_width="80dp"
+                        android:layout_height="120dp"
                         android:gravity="center"
                         android:src="@drawable/img_empty" />
 
                     <ImageView
                         android:id="@+id/iv_outerWear2"
-                        android:layout_width="117dp"
-                        android:layout_height="170dp"
+                        android:layout_width="80dp"
+                        android:layout_height="120dp"
                         android:gravity="center"
                         android:src="@drawable/img_empty" />
                     <ImageView
                         android:id="@+id/iv_neckWear2"
-                        android:layout_width="117dp"
-                        android:layout_height="170dp"
+                        android:layout_width="80dp"
+                        android:layout_height="120dp"
                         android:gravity="center"
                         android:src="@drawable/img_empty" />
                 </FrameLayout>
@@ -293,6 +299,7 @@
                 <TextView
                     style="@style/Caption1"
                     android:textColor="@color/BlueDark40"
+                    android:includeFontPadding="false"
                     android:id="@+id/tv_nextInfoText3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -305,6 +312,7 @@
                     style="@style/H4"
                     android:textColor="@color/BlueDark40"
                     android:id="@+id/tv_temperature3"
+                    android:includeFontPadding="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"/>
@@ -315,34 +323,34 @@
 
                     <ImageView
                         android:id="@+id/iv_nextPenguin3"
-                        android:layout_width="117dp"
-                        android:layout_height="170dp"
+                        android:layout_width="80dp"
+                        android:layout_height="120dp"
                         android:gravity="center"
                         android:src="@drawable/img_base" />
 
                     <ImageView
                         android:id="@+id/iv_topWear3"
-                        android:layout_width="117dp"
-                        android:layout_height="170dp"
+                        android:layout_width="80dp"
+                        android:layout_height="120dp"
                         android:gravity="center"
                         android:src="@drawable/img_empty" />
                     <ImageView
                         android:id="@+id/iv_headWear3"
-                        android:layout_width="117dp"
-                        android:layout_height="170dp"
+                        android:layout_width="80dp"
+                        android:layout_height="120dp"
                         android:gravity="center"
                         android:src="@drawable/img_empty" />
 
                     <ImageView
                         android:id="@+id/iv_outerWear3"
-                        android:layout_width="117dp"
-                        android:layout_height="170dp"
+                        android:layout_width="80dp"
+                        android:layout_height="120dp"
                         android:gravity="center"
                         android:src="@drawable/img_empty" />
                     <ImageView
                         android:id="@+id/iv_neckWear3"
-                        android:layout_width="117dp"
-                        android:layout_height="170dp"
+                        android:layout_width="80dp"
+                        android:layout_height="120dp"
                         android:gravity="center"
                         android:src="@drawable/img_empty" />
                 </FrameLayout>
