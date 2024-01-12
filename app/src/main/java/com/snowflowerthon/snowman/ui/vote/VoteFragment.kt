@@ -24,7 +24,6 @@ import retrofit2.Call
 
 class VoteFragment : Fragment() {
 
-
     var topWear = Clothes.NEAT
     var neckWear = Clothes.NONE
     var headWear = Clothes.NONE
@@ -67,8 +66,6 @@ class VoteFragment : Fragment() {
             binding.ivHeadWear.setImageResource(R.drawable.img_empty)
             binding.ivNeckWear.setImageResource(R.drawable.img_empty)
 
-
-
         }
 
         binding.btnCustomSave.setOnClickListener {
@@ -83,7 +80,7 @@ class VoteFragment : Fragment() {
                     } else {
                         // TODO: 서버 에러 처리
                         Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
-                        Toast.makeText(context, "투표가 실패했어요.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "투표가 실패했어ㄹ.", Toast.LENGTH_SHORT).show()
                     }
                 }
 
