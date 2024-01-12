@@ -1,7 +1,7 @@
 package com.snowflowerthon.snowman.data.dto.response
 
 data class VoteHistory(
-    val archive_id: Int,
+    val archiveId: Long,
     val headWear: String,
     val location: String,
     val neckWear: String,

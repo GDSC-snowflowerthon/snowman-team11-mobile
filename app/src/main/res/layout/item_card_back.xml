@@ -6,8 +6,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
         android:backgroundTint="@color/BlueLight10"
         android:elevation="10dp"
         app:cardCornerRadius="8dp"
@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="2024.01.12"
+                android:text="펭도리 12"
                 android:layout_marginBottom="30dp"
                 android:textColor="@color/BlueDark40"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -34,9 +34,9 @@ interface ApiService {
     :Call<BaseResponseDto<ArchiveDetailiResponseDto?>>
 
 
-    @GET ("api/v1/users/vote-history/{voteHistoryId}") // 아카이빙 상세보기
+    @GET ("api/v1/users/vote-history/{archiveId}/details") // 아카이빙 상세보기
     fun archiveDetail(@Header("Authorization") token: String,
-                      @Path("voteHistoryId") voteHistoryId: Long)
+                      @Path("archiveId") archiveId: Long)
     :Call<BaseResponseDto<VoteHistory?>>
 
     @GET("/api/v1/weathers/{weatherId}/poll") //투표 여부 조회
