@@ -20,10 +20,10 @@
         app:snowflakeSizeMax="5dp"
         app:snowflakeSpeedMin="5"
         app:snowflakeSpeedMax="15"
-        app:snowflakesFadingEnabled="false"
-        app:snowflakesAlreadyFalling="false"
+        app:snowflakesFadingEnabled="true"
+        app:snowflakesAlreadyFalling="true"
         app:snowflakeImage="@drawable/img_raindrop"
-        android:visibility="invisible" />
+        android:visibility="visible" />
 
     <!-- 눈 내리는 애니메이션 -->
     <com.jetradarmobile.snowfall.SnowfallView
