@@ -8,6 +8,23 @@
     android:layout_height="match_parent"
     android:background="@drawable/img_home_background">
 
+    <!-- 비 내리는 애니메이션 -->
+    <com.jetradarmobile.snowfall.SnowfallView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:snowflakesNum="80"
+        app:snowflakeAlphaMin="150"
+        app:snowflakeAlphaMax="255"
+        app:snowflakeAngleMax="0"
+        app:snowflakeSizeMin="2dp"
+        app:snowflakeSizeMax="5dp"
+        app:snowflakeSpeedMin="5"
+        app:snowflakeSpeedMax="15"
+        app:snowflakesFadingEnabled="false"
+        app:snowflakesAlreadyFalling="false"
+        app:snowflakeImage="@drawable/img_raindrop"
+        android:visibility="invisible" />
+
     <!-- 눈 내리는 애니메이션 -->
     <com.jetradarmobile.snowfall.SnowfallView
         android:layout_width="match_parent"
@@ -23,8 +40,7 @@
         app:snowflakesFadingEnabled="false"
         app:snowflakesAlreadyFalling="true"
         app:snowflakeImage="@drawable/img_snowball"
-        android:visibility="invisible"
-        />
+        android:visibility="invisible" />
 
     <!-- 현재 시간대의 펭귄 코디 (디폴트 + 투표 반영) -->
     <ImageView
