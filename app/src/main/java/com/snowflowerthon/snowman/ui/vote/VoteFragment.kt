@@ -24,11 +24,6 @@ import retrofit2.Call
 
 class VoteFragment : Fragment() {
 
-    var topWear = Clothes.NEAT
-    var neckWear = Clothes.NONE
-    var headWear = Clothes.NONE
-    var outerWear = Clothes.NONE
-
 
     private var _binding: FragmentVoteBinding? = null
     private val binding get() = _binding!!
@@ -57,8 +52,12 @@ class VoteFragment : Fragment() {
             tab.text = tabNames[position]
         }.attach()
 
-        val codi = VoteRequsetDto(headWear,neckWear,outerWear,topWear)
-        val token ="Bearer eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjIsIlJPTEVfVVNFUiI6IlVTRVIiLCJpYXQiOjE3MDUwMDA4NTksImV4cCI6MTcwNTcyMDg1OX0.bctp9AioWRyjIK_wTTJR-3ahM9LpqfO1AqqsphtLBScHF0w8jG-n1uIkexsVHHjh5jA0fx4A-7RaPIkOQfkA5w"
+
+        var topWear = Clothes.NEAT
+        var neckWear = Clothes.NONE
+        var headWear = Clothes.NONE
+        var outerWear = Clothes.NONE
+
 
         binding.btnCustomReset.setOnClickListener {
             binding.ivOuterWear.setImageResource(R.drawable.img_empty)
@@ -68,7 +67,10 @@ class VoteFragment : Fragment() {
 
         }
 
+
         binding.btnCustomSave.setOnClickListener {
+            val codi = VoteRequsetDto(headWear,neckWear,outerWear,topWear)
+            val token ="Bearer eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsIlJPTEVfVVNFUiI6IlVTRVIiLCJpYXQiOjE3MDUwNjY0NDAsImV4cCI6MTcwNTc4NjQ0MH0.IXB0cUQzgivyInhz4C_w58iIpDDpL8uafUsSSurxoZ4-49pUXuQq0eKAbJgSXs86iRMSvN_4cShcWiaxWMZpzw"
             val retrofitAPI = RetrofitClient.getInstance().create(ApiService::class.java)
             retrofitAPI.voteClothes(token,1,  codi).enqueue(object : retrofit2.Callback<BaseResponseDto<String?>> {
                 override fun onResponse(call: Call<BaseResponseDto<String?>>, response: retrofit2.Response<BaseResponseDto<String?>>) {
