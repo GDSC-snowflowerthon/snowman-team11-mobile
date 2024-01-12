@@ -1,14 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.HomeFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.HomeFragment">
+    android:background="@drawable/img_home_background">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- 현재 시간대의 펭귄 코디 (디폴트 + 투표 반영) -->
+    <ImageView
+        android:id="@+id/iv_currentPenguin"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="669dp"
+        android:src="@drawable/img_base"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <!-- 현재 시간, 기온, 날짜 -->
+    <TextView
+        android:id="@+id/tv_currentInfo"
+        android:layout_width="256dp"
+        android:layout_height="78dp"
+        android:layout_marginTop="78dp"
+        android:text="@string/hello_blank_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 다음 시간대의 정보와 디폴트 코디 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/nextPenguins"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
+        <!-- 현재 이후 첫번째 시간대의 정보 텍스트 (날짜, 시간대, 최저/최대 기온) -->
+        <TextView
+            android:id="@+id/tv_nextInfoText1"
+            android:layout_width="79dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/iv_nextPenguin1"
+            app:layout_constraintEnd_toStartOf="@+id/tv_nextInfoText2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 현재 이후 첫번째 시간대의 펭귄 코디 (디폴트 값) -->
+        <ImageView
+            android:id="@+id/iv_nextPenguin1"
+            android:layout_width="117dp"
+            android:layout_height="170dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="15dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_base"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iv_nextPenguin2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nextInfoText1" />
+
+        <!-- 현재 이후 두번째 시간대의 정보 텍스트 (날짜, 시간대, 최저/최대 기온) -->
+        <TextView
+            android:id="@+id/tv_nextInfoText2"
+            android:layout_width="79dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/iv_nextPenguin2"
+            app:layout_constraintEnd_toStartOf="@+id/tv_nextInfoText3"
+            app:layout_constraintStart_toEndOf="@+id/tv_nextInfoText1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 현재 이후 두번째 시간대의 펭귄 코디 (디폴트 값) -->
+        <ImageView
+            android:id="@+id/iv_nextPenguin2"
+            android:layout_width="117dp"
+            android:layout_height="170dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="15dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_base"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iv_nextPenguin3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_nextPenguin1"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nextInfoText2" />
+
+        <!-- 현재 이후 세번째 시간대의 펭귄 코디 (디폴트 값) -->
+        <TextView
+            android:id="@+id/tv_nextInfoText3"
+            android:layout_width="79dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="35dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/iv_nextPenguin3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_nextInfoText2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 현재 이후 세번째 시간대의 펭귄 코디 (디폴트 값) -->
+        <ImageView
+            android:id="@+id/iv_nextPenguin3"
+            android:layout_width="117dp"
+            android:layout_height="170dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="15dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_base"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_nextPenguin2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nextInfoText3" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
