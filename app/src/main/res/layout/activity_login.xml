@@ -11,10 +11,9 @@
         android:id="@+id/iv_appLogo"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginTop="228dp"
         android:src="@drawable/app_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,10 +25,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/iv_appLogo"
-        android:fontFamily="@font/noto_bold"
+        style="@style/H1"
         android:layout_marginBottom="20dp"
-        android:textColor="@color/BlueDark30"
-        />
+        android:textColor="@color/BlueDark40" />
 
 
     <ImageButton
@@ -37,11 +35,12 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="80dp"
+        android:background="@android:color/transparent"
         android:contentDescription="@string/com_kakao_talk_chooser_text"
         android:src="@drawable/img_kakao_login_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_appLogo"
-        android:background="@android:color/transparent"/>
+        app:layout_constraintTop_toBottomOf="@id/iv_appLogo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

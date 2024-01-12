@@ -2,8 +2,11 @@ package com.snowflowerthon.snowman.ui
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
@@ -21,6 +24,8 @@ import com.snowflowerthon.snowman.databinding.ActivityLoginBinding
 import com.snowflowerthon.snowman.databinding.ActivityLoginBinding.inflate
 import kotlinx.coroutines.launch
 import retrofit2.Call
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 
 class LoginActivity : AppCompatActivity() {
@@ -45,6 +50,25 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 */
+
+        var packageInfo: PackageInfo? = null
+        try {
+            packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
+        if (packageInfo == null) Log.e("KeyHash", "KeyHash:null")
+
+        for (signature in packageInfo!!.signatures) {
+            try {
+                val md = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                Log.d("KeyHash", Base64.encodeToString(md.digest(), Base64.DEFAULT))
+            } catch (e: NoSuchAlgorithmException) {
+                Log.e("KeyHash", "Unable to get MessageDigest. signature=$signature", e)
+            }
+        }
+
         val context = this
 
 
@@ -75,6 +99,8 @@ class LoginActivity : AppCompatActivity() {
                 // 유저의 아이디. 프로바이더아이디 받아옴
                 Log.d(TAG, "invoke: id =" + user.id)
                 val providerID = user.id
+
+
                 MySharedPreferences.setProviderId(this@LoginActivity, providerID)
 
                 val intent = Intent(this, MainActivity::class.java)
@@ -84,6 +110,8 @@ class LoginActivity : AppCompatActivity() {
                     override fun onResponse(call: Call<BaseResponseDto<LoginResponseDto?>>, response: retrofit2.Response<BaseResponseDto<LoginResponseDto?>>) {
                         if (response.isSuccessful) {
                             // TODO: 서버 응답을 처리
+
+                            MySharedPreferences.setToken(this@LoginActivity, response.body()?.data?.accessToken.toString())
                             Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
                             Toast.makeText(this@LoginActivity, "로그인이 완료되었어요.", Toast.LENGTH_SHORT).show()
                             startActivity(intent)

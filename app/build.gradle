@@ -52,6 +52,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.android.identity:identity-credential-android:+'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -59,6 +60,8 @@ dependencies {
     /*카카오 로그인 모듈*/
     implementation 'com.kakao.sdk:v2-user:2.19.0'
 
+    /* 눈, 비 애니메이션 */
+    implementation 'com.github.jetradarmobile:android-snowfall:1.2.1'
 
 
 //    implementation 'com.android.support:design:34.0.0'

@@ -19,6 +19,7 @@ import com.snowflowerthon.snowman.data.dto.response.ArchiveDetailiResponseDto
 import com.snowflowerthon.snowman.data.dto.response.VoteHistory
 import com.snowflowerthon.snowman.databinding.FragmentArchiveBinding
 import com.snowflowerthon.snowman.databinding.FragmentVoteBinding
+import com.snowflowerthon.snowman.ui.MySharedPreferences
 import retrofit2.Call
 
 
@@ -29,7 +30,6 @@ class ArchiveFragment : Fragment() {
 
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var gridAdapter: GridAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,9 +56,8 @@ class ArchiveFragment : Fragment() {
 
     private fun lodeData(){
             //임시 토큰
-            val token ="Bearer eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsIlJPTEVfVVNFUiI6IlVTRVIiLCJpYXQiOjE3MDUwNjY0NDAsImV4cCI6MTcwNTc4NjQ0MH0.IXB0cUQzgivyInhz4C_w58iIpDDpL8uafUsSSurxoZ4-49pUXuQq0eKAbJgSXs86iRMSvN_4cShcWiaxWMZpzw"
             val retrofitAPI = RetrofitClient.getInstance().create(ApiService::class.java)
-            retrofitAPI.archive(token).enqueue(object : retrofit2.Callback<BaseResponseDto<ArchiveDetailiResponseDto?>> {
+            retrofitAPI.archive(MySharedPreferences.getToken(requireContext()),MySharedPreferences.getWeatherId(requireContext())).enqueue(object : retrofit2.Callback<BaseResponseDto<ArchiveDetailiResponseDto?>> {
                 override fun onResponse(call: Call<BaseResponseDto<ArchiveDetailiResponseDto?>>, response: retrofit2.Response<BaseResponseDto<ArchiveDetailiResponseDto?>>) {
                     if (response.isSuccessful) {
                         // TODO: 서버 응답을 처리

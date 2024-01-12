@@ -7,7 +7,7 @@ data class WeatherResponseDto(
     val secondBranch: SecondBranch,
     val temperature: Int,
     val thirdBranch: ThirdBranch,
-    val weatherId: Int,
+    val weatherId: Long,
     val weatherStatus: String
 )
 

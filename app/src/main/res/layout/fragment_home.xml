@@ -8,30 +8,124 @@
     android:layout_height="match_parent"
     android:background="@drawable/img_home_background">
 
+    <!-- 비 내리는 애니메이션 -->
+    <com.jetradarmobile.snowfall.SnowfallView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:snowflakesNum="80"
+        app:snowflakeAlphaMin="150"
+        app:snowflakeAlphaMax="255"
+        app:snowflakeAngleMax="0"
+        app:snowflakeSizeMin="2dp"
+        app:snowflakeSizeMax="5dp"
+        app:snowflakeSpeedMin="5"
+        app:snowflakeSpeedMax="15"
+        app:snowflakesFadingEnabled="true"
+        app:snowflakesAlreadyFalling="true"
+        app:snowflakeImage="@drawable/img_raindrop"
+        android:visibility="visible" />
+
+    <!-- 눈 내리는 애니메이션 -->
+    <com.jetradarmobile.snowfall.SnowfallView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:snowflakesNum="50"
+        app:snowflakeAlphaMin="150"
+        app:snowflakeAlphaMax="255"
+        app:snowflakeAngleMax="5"
+        app:snowflakeSizeMin="4dp"
+        app:snowflakeSizeMax="20dp"
+        app:snowflakeSpeedMin="1"
+        app:snowflakeSpeedMax="5"
+        app:snowflakesFadingEnabled="false"
+        app:snowflakesAlreadyFalling="true"
+        app:snowflakeImage="@drawable/img_snowball"
+        android:visibility="invisible" />
+
     <!-- 현재 시간대의 펭귄 코디 (디폴트 + 투표 반영) -->
 
     <!-- 현재 시간, 기온, 날짜 -->
-
     <ImageView
         android:id="@+id/iv_currentPenguin"
         android:layout_width="241dp"
         android:layout_height="427dp"
-        android:layout_marginTop="112dp"
         android:src="@drawable/img_base"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+    <ImageView
+        android:id="@+id/iv_current_topWear"
+        android:layout_width="241dp"
+        android:layout_height="427dp"
+        android:src="@drawable/img_empty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+    <ImageView
+        android:id="@+id/iv_current_headWear"
+        android:layout_width="241dp"
+        android:layout_height="427dp"
+        android:src="@drawable/img_empty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+    <ImageView
+        android:id="@+id/iv_current_outerWear"
+        android:layout_width="241dp"
+        android:layout_height="427dp"
+        android:src="@drawable/img_empty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+
+    <ImageView
+        android:id="@+id/iv_current_neckWear"
+        android:layout_width="241dp"
+        android:layout_height="427dp"
+        android:src="@drawable/img_empty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_location" />
 
     <TextView
-        android:id="@+id/tv_currentInfo"
-        android:layout_width="256dp"
-        android:layout_height="78dp"
+        android:id="@+id/tv_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="78dp"
-        android:text="@string/hello_blank_fragment"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        style="@style/H1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_currentPenguin">
+
+
+        <ImageView
+            android:id="@+id/iv_weather"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/img_sunny"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_current_temperature"
+            style="@style/H2"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="@+id/iv_currentPenguin" />
+
+    </LinearLayout>
 
     <!-- 다음 시간대의 정보와 디폴트 코디 -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,94 +134,211 @@
         android:layout_height="240dp"
         android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="-27dp">
 
-        <!-- 현재 이후 첫번째 시간대의 정보 텍스트 (날짜, 시간대, 최저/최대 기온) -->
-        <TextView
-            android:id="@+id/tv_nextInfoText1"
-            android:layout_width="79dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="30dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/iv_nextPenguin1"
-            app:layout_constraintEnd_toStartOf="@+id/tv_nextInfoText2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- 현재 이후 첫번째 시간대의 펭귄 코디 (디폴트 값) -->
-        <ImageView
-            android:id="@+id/iv_nextPenguin1"
-            android:layout_width="117dp"
-            android:layout_height="170dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="15dp"
-            android:src="@drawable/img_base"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/iv_nextPenguin2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_nextInfoText1" />
-
-        <!-- 현재 이후 두번째 시간대의 정보 텍스트 (날짜, 시간대, 최저/최대 기온) -->
-        <TextView
-            android:id="@+id/tv_nextInfoText2"
-            android:layout_width="79dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="30dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/iv_nextPenguin2"
-            app:layout_constraintEnd_toStartOf="@+id/tv_nextInfoText3"
-            app:layout_constraintStart_toEndOf="@+id/tv_nextInfoText1"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- 현재 이후 두번째 시간대의 펭귄 코디 (디폴트 값) -->
-        <ImageView
-            android:id="@+id/iv_nextPenguin2"
-            android:layout_width="117dp"
-            android:layout_height="170dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="15dp"
-            android:src="@drawable/img_base"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/iv_nextPenguin3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/iv_nextPenguin1"
-            app:layout_constraintTop_toBottomOf="@+id/tv_nextInfoText2" />
-
-        <!-- 현재 이후 세번째 시간대의 펭귄 코디 (디폴트 값) -->
-        <TextView
-            android:id="@+id/tv_nextInfoText3"
-            android:layout_width="79dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="35dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/iv_nextPenguin3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_nextInfoText2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- 현재 이후 세번째 시간대의 펭귄 코디 (디폴트 값) -->
-        <ImageView
-            android:id="@+id/iv_nextPenguin3"
-            android:layout_width="117dp"
-            android:layout_height="170dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="15dp"
-            android:src="@drawable/img_base"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/iv_nextPenguin2"
-            app:layout_constraintTop_toBottomOf="@+id/tv_nextInfoText3" />
+            app:layout_constraintStart_toStartOf="parent">
+
+            <!-- 현재 이후 첫번째 시간대의 정보 텍스트 (날짜, 시간대, 최저/최대 기온) -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Caption1"
+                    android:textColor="@color/BlueDark40"
+                    android:id="@+id/tv_nextInfoText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"/>
+                <!-- 현재 이후 첫번째 시간대의 펭귄 코디 (디폴트 값) -->
+
+                <TextView
+                    style="@style/H4"
+                    android:textColor="@color/BlueDark40"
+                    android:id="@+id/tv_temperature1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"/>
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/iv_nextPenguin1"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_base" />
+
+                    <ImageView
+                        android:id="@+id/iv_topWear1"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+                    <ImageView
+                        android:id="@+id/iv_headWear1"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+
+                    <ImageView
+                        android:id="@+id/iv_outerWear1"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+                    <ImageView
+                        android:id="@+id/iv_neckWear1"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <!-- 현재 이후 두번째 시간대의 정보 텍스트 (날짜, 시간대, 최저/최대 기온) -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    style="@style/Caption1"
+                    android:textColor="@color/BlueDark40"
+                    android:id="@+id/tv_nextInfoText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:layout_constraintBottom_toTopOf="@+id/iv_nextPenguin2"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_nextInfoText3"
+                    app:layout_constraintStart_toEndOf="@+id/tv_nextInfoText1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/H4"
+                    android:textColor="@color/BlueDark40"
+                    android:id="@+id/tv_temperature2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+                <!-- 현재 이후 두번째 시간대의 펭귄 코디 (디폴트 값) -->
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/iv_nextPenguin2"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_base" />
+
+                    <ImageView
+                        android:id="@+id/iv_topWear2"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+                    <ImageView
+                        android:id="@+id/iv_headWear2"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+
+                    <ImageView
+                        android:id="@+id/iv_outerWear2"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+                    <ImageView
+                        android:id="@+id/iv_neckWear2"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <!-- 현재 이후 세번째 시간대의 펭귄 코디 (디폴트 값) -->
+                <TextView
+                    style="@style/Caption1"
+                    android:textColor="@color/BlueDark40"
+                    android:id="@+id/tv_nextInfoText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:layout_constraintBottom_toTopOf="@+id/iv_nextPenguin3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tv_nextInfoText2"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    style="@style/H4"
+                    android:textColor="@color/BlueDark40"
+                    android:id="@+id/tv_temperature3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"/>
+                <!-- 현재 이후 세번째 시간대의 펭귄 코디 (디폴트 값) -->
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/iv_nextPenguin3"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_base" />
+
+                    <ImageView
+                        android:id="@+id/iv_topWear3"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+                    <ImageView
+                        android:id="@+id/iv_headWear3"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+
+                    <ImageView
+                        android:id="@+id/iv_outerWear3"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+                    <ImageView
+                        android:id="@+id/iv_neckWear3"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
