@@ -16,11 +16,15 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import com.snowflowerthon.snowman.R
 import com.snowflowerthon.snowman.data.ApiService
 import com.snowflowerthon.snowman.data.RetrofitClient
 import com.snowflowerthon.snowman.data.dto.BaseResponseDto
 import com.snowflowerthon.snowman.data.dto.response.WeatherResponseDto
+import com.snowflowerthon.snowman.data.enums.Clothes
+import com.snowflowerthon.snowman.data.enums.Weather
 import com.snowflowerthon.snowman.databinding.FragmentHomeBinding
+import com.snowflowerthon.snowman.ui.MySharedPreferences.setWeatherId
 import retrofit2.Call
 import retrofit2.Response
 import java.time.LocalDateTime
@@ -109,6 +113,7 @@ class HomeFragment : Fragment() {
 
                         var data = response.body()?.data
 
+                        data?.weatherId?.let { setWeatherId(requireContext(), it) }
 
                         binding.tvLocation.text = data?.location.toString()
 
@@ -121,6 +126,117 @@ class HomeFragment : Fragment() {
                         binding.tvTemperature1.text = "${data?.firstBranch?.highestTemperature}°/${data?.firstBranch?.lowestTemperature}°"
                         binding.tvTemperature2.text = "${data?.secondBranch?.highestTemperature}°/${data?.secondBranch?.lowestTemperature}°"
                         binding.tvTemperature3.text = "${data?.thirdBranch?.highestTemperature}°/${data?.thirdBranch?.lowestTemperature}°"
+
+                        when (data?.weatherStatus) {
+                            Weather.CLEAR.toString() -> { binding.ivWeather.setImageResource(R.drawable.img_sunny) }
+                            Weather.RAIN.toString() -> { binding.ivWeather.setImageResource(R.drawable.ic_rainy) }
+                            Weather.SNOW.toString() -> { binding.ivWeather.setImageResource(R.drawable.img_snowy) }
+                        }
+
+                        when (data?.mainBranch?.headWear){
+                            Clothes.BALACLAVA.toString() -> { binding.ivCurrentHeadWear.setImageResource(R.drawable.img_balaclava) }
+                            Clothes.EAR_MUFFS.toString() -> { binding.ivCurrentHeadWear.setImageResource(R.drawable.img_ear) }
+                            Clothes.NONE.toString() -> { binding.ivCurrentHeadWear.setImageResource(R.drawable.img_empty) }
+                        }
+
+                        when (data?.mainBranch?.neckWear){
+                            Clothes.SCARF.toString() -> { binding.ivCurrentNeckWear.setImageResource(R.drawable.img_muffler) }
+                            Clothes.NONE.toString() -> { binding.ivCurrentNeckWear.setImageResource(R.drawable.img_empty) }
+                        }
+
+                        when (data?.mainBranch?.outerWear){
+                            Clothes.SHORT_PADDING.toString() -> { binding.ivCurrentOuterWear.setImageResource(
+                                R.drawable.img_short_padding) }
+                            Clothes.LONG_PADDING.toString() -> { binding.ivCurrentOuterWear.setImageResource(
+                                R.drawable.img_long_padding) }
+                            Clothes.COAT.toString() -> { binding.ivCurrentOuterWear.setImageResource(R.drawable.img_coat) }
+                            Clothes.NONE.toString() -> { binding.ivCurrentOuterWear.setImageResource(R.drawable.img_empty) }
+                        }
+
+                        when (data?.mainBranch?.topWear){
+                            Clothes.LONG_SLEEVE.toString() -> { binding.ivCurrentTopWear.setImageResource(R.drawable.img_long_shirt) }
+                            Clothes.NEAT.toString() -> { binding.ivCurrentTopWear.setImageResource(R.drawable.img_neat) }
+                        }
+
+                        //1분기
+                        when (data?.firstBranch?.headWear){
+                            Clothes.BALACLAVA.toString() -> { binding.ivHeadWear1.setImageResource(R.drawable.img_balaclava) }
+                            Clothes.EAR_MUFFS.toString() -> { binding.ivHeadWear1.setImageResource(R.drawable.img_ear) }
+                            Clothes.NONE.toString() -> { binding.ivHeadWear1.setImageResource(R.drawable.img_empty) }
+                        }
+
+                        when (data?.firstBranch?.neckWear){
+                            Clothes.SCARF.toString() -> { binding.ivNeckWear1.setImageResource(R.drawable.img_muffler) }
+                            Clothes.NONE.toString() -> { binding.ivNeckWear1.setImageResource(R.drawable.img_empty) }
+                        }
+
+                        when (data?.firstBranch?.outerWear){
+                            Clothes.SHORT_PADDING.toString() -> { binding.ivOuterWear1.setImageResource(
+                                R.drawable.img_short_padding) }
+                            Clothes.LONG_PADDING.toString() -> { binding.ivOuterWear1.setImageResource(
+                                R.drawable.img_long_padding) }
+                            Clothes.COAT.toString() -> { binding.ivOuterWear1.setImageResource(R.drawable.img_coat) }
+                            Clothes.NONE.toString() -> { binding.ivOuterWear1.setImageResource(R.drawable.img_empty) }
+                        }
+
+                        when (data?.firstBranch?.topWear){
+                            Clothes.LONG_SLEEVE.toString() -> { binding.ivTopWear1.setImageResource(R.drawable.img_long_shirt) }
+                            Clothes.NEAT.toString() -> { binding.ivTopWear1.setImageResource(R.drawable.img_neat) }
+                        }
+
+                        //두번째 분기
+                        when (data?.secondBranch?.headWear){
+                            Clothes.BALACLAVA.toString() -> { binding.ivHeadWear2.setImageResource(R.drawable.img_balaclava) }
+                            Clothes.EAR_MUFFS.toString() -> { binding.ivHeadWear2.setImageResource(R.drawable.img_ear) }
+                            Clothes.NONE.toString() -> { binding.ivHeadWear2.setImageResource(R.drawable.img_empty) }
+                        }
+
+                        when (data?.secondBranch?.neckWear){
+                            Clothes.SCARF.toString() -> { binding.ivNeckWear2.setImageResource(R.drawable.img_muffler) }
+                            Clothes.NONE.toString() -> { binding.ivNeckWear2.setImageResource(R.drawable.img_empty) }
+                        }
+
+                        when (data?.secondBranch?.outerWear){
+                            Clothes.SHORT_PADDING.toString() -> { binding.ivOuterWear2.setImageResource(
+                                R.drawable.img_short_padding) }
+                            Clothes.LONG_PADDING.toString() -> { binding.ivOuterWear2.setImageResource(
+                                R.drawable.img_long_padding) }
+                            Clothes.COAT.toString() -> { binding.ivOuterWear2.setImageResource(R.drawable.img_coat) }
+                            Clothes.NONE.toString() -> { binding.ivOuterWear2.setImageResource(R.drawable.img_empty) }
+                        }
+
+                        when (data?.secondBranch?.topWear){
+                            Clothes.LONG_SLEEVE.toString() -> { binding.ivTopWear2.setImageResource(R.drawable.img_long_shirt) }
+                            Clothes.NEAT.toString() -> { binding.ivTopWear2.setImageResource(R.drawable.img_neat) }
+                        }
+
+                        //세번째 분기
+
+                        when (data?.thirdBranch?.headWear){
+                            Clothes.BALACLAVA.toString() -> { binding.ivHeadWear3.setImageResource(R.drawable.img_balaclava) }
+                            Clothes.EAR_MUFFS.toString() -> { binding.ivHeadWear3.setImageResource(R.drawable.img_ear) }
+                            Clothes.NONE.toString() -> { binding.ivHeadWear3.setImageResource(R.drawable.img_empty) }
+                        }
+
+                        when (data?.thirdBranch?.neckWear){
+                            Clothes.SCARF.toString() -> { binding.ivNeckWear3.setImageResource(R.drawable.img_muffler) }
+                            Clothes.NONE.toString() -> { binding.ivNeckWear3.setImageResource(R.drawable.img_empty) }
+                        }
+
+                        when (data?.thirdBranch?.outerWear){
+                            Clothes.SHORT_PADDING.toString() -> { binding.ivOuterWear3.setImageResource(
+                                R.drawable.img_short_padding) }
+                            Clothes.LONG_PADDING.toString() -> { binding.ivOuterWear3.setImageResource(
+                                R.drawable.img_long_padding) }
+                            Clothes.COAT.toString() -> { binding.ivOuterWear3.setImageResource(R.drawable.img_coat) }
+                            Clothes.NONE.toString() -> { binding.ivOuterWear3.setImageResource(R.drawable.img_empty) }
+                        }
+
+                        when (data?.thirdBranch?.topWear){
+                            Clothes.LONG_SLEEVE.toString() -> { binding.ivTopWear3.setImageResource(R.drawable.img_long_shirt) }
+                            Clothes.NEAT.toString() -> { binding.ivTopWear3.setImageResource(R.drawable.img_neat) }
+                        }
+
 
                     } else {
                         // TODO: 서버 에러 처리
@@ -136,18 +252,5 @@ class HomeFragment : Fragment() {
                 }
             })
     }
-
-//
-//    fun bindData(response: Response<BaseResponseDto<WeatherResponseDto>>) {
-//        var data = response.body()?.data
-//
-//
-//        binding.tvLocation.text = data?.location.toString()
-//
-//        binding.tvNextInfoText1.text = data?.firstBranch?.branchTime.toString()
-//        binding.tvNextInfoText2.text = data?.secondBranch?.branchTime.toString()
-//        binding.tvNextInfoText3.text = data?.thirdBranch?.branchTime.toString()
-//
-//    }
 }
 

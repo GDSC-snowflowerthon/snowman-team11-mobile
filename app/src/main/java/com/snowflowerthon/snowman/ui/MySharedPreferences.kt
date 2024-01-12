@@ -2,7 +2,6 @@ package com.snowflowerthon.snowman.ui
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.kakao.sdk.auth.model.OAuthToken
 
 object MySharedPreferences {
 
@@ -37,6 +36,19 @@ object MySharedPreferences {
         } else {
             ""
         }
+    }
+
+    fun setWeatherId(context: Context, weatherId: Long) {
+        val prefs: SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = prefs.edit()
+        editor.putLong("MY_WEATHER", weatherId)
+        editor.commit()
+    }
+
+    fun getWeatherId(context: Context): Long {
+        val prefs: SharedPreferences =
+            context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        return prefs.getLong("MY_WEATHER", 1)
     }
 
 }

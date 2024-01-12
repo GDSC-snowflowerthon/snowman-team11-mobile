@@ -21,15 +21,16 @@ interface ApiService {
     fun login(@Body request: LoginRequestDto)
             : Call<BaseResponseDto<LoginResponseDto?>>
 
-    @POST("/api/v1/weathers/{regionId}/poll") //투표하기
+    @POST("/api/v1/weathers/{weatherId}/poll") //투표하기
     fun voteClothes(@Header("Authorization") token: String,
-                    @Path("regionId") regionId: Long,
+                    @Path("weatherId") weatherId: Long,
                     @Body request: VoteRequsetDto)
             : Call<BaseResponseDto<String?>>
 
 
-    @GET ("api/v1/users/vote-history") //아카이빙 모아보기
-    fun archive(@Header("Authorization") token: String)
+    @GET ("api/v1/users/vote-history/{weatherId}") //아카이빙 모아보기
+    fun archive(@Header("Authorization") token: String,
+                @Path("weatherId") weatherId: Long)
     :Call<BaseResponseDto<ArchiveDetailiResponseDto?>>
 
 

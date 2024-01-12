@@ -11,12 +11,44 @@
     <!-- 현재 시간대의 펭귄 코디 (디폴트 + 투표 반영) -->
 
     <!-- 현재 시간, 기온, 날짜 -->
-
     <ImageView
         android:id="@+id/iv_currentPenguin"
         android:layout_width="241dp"
         android:layout_height="427dp"
         android:src="@drawable/img_base"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+    <ImageView
+        android:id="@+id/iv_current_topWear"
+        android:layout_width="241dp"
+        android:layout_height="427dp"
+        android:src="@drawable/img_empty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+    <ImageView
+        android:id="@+id/iv_current_headWear"
+        android:layout_width="241dp"
+        android:layout_height="427dp"
+        android:src="@drawable/img_empty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+    <ImageView
+        android:id="@+id/iv_current_outerWear"
+        android:layout_width="241dp"
+        android:layout_height="427dp"
+        android:src="@drawable/img_empty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+
+    <ImageView
+        android:id="@+id/iv_current_neckWear"
+        android:layout_width="241dp"
+        android:layout_height="427dp"
+        android:src="@drawable/img_empty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_location" />
@@ -101,17 +133,43 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"/>
-                <ImageView
-                    android:id="@+id/iv_nextPenguin1"
-                    android:layout_width="117dp"
-                    android:layout_height="170dp"
-                    android:gravity="center"
-                    android:src="@drawable/img_base"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_nextPenguin2"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_nextInfoText1" />
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/iv_nextPenguin1"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_base" />
+
+                    <ImageView
+                        android:id="@+id/iv_topWear1"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+                    <ImageView
+                        android:id="@+id/iv_headWear1"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+
+                    <ImageView
+                        android:id="@+id/iv_outerWear1"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+                    <ImageView
+                        android:id="@+id/iv_neckWear1"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+                </FrameLayout>
 
             </LinearLayout>
 
@@ -142,18 +200,43 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center" />
                 <!-- 현재 이후 두번째 시간대의 펭귄 코디 (디폴트 값) -->
-                <ImageView
-                    android:id="@+id/iv_nextPenguin2"
-                    android:layout_width="117dp"
-                    android:layout_height="170dp"
-                    android:gravity="center"
-                    android:src="@drawable/img_base"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_nextPenguin3"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/iv_nextPenguin1"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_nextInfoText2" />
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
+                    <ImageView
+                        android:id="@+id/iv_nextPenguin2"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_base" />
+
+                    <ImageView
+                        android:id="@+id/iv_topWear2"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+                    <ImageView
+                        android:id="@+id/iv_headWear2"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+
+                    <ImageView
+                        android:id="@+id/iv_outerWear2"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+                    <ImageView
+                        android:id="@+id/iv_neckWear2"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+                </FrameLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -182,18 +265,43 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"/>
                 <!-- 현재 이후 세번째 시간대의 펭귄 코디 (디폴트 값) -->
-                <ImageView
-                    android:id="@+id/iv_nextPenguin3"
-                    android:layout_width="117dp"
-                    android:layout_height="170dp"
-                    android:src="@drawable/img_base"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/iv_nextPenguin2"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_nextInfoText3" />
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
+                    <ImageView
+                        android:id="@+id/iv_nextPenguin3"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_base" />
 
+                    <ImageView
+                        android:id="@+id/iv_topWear3"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+                    <ImageView
+                        android:id="@+id/iv_headWear3"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+
+                    <ImageView
+                        android:id="@+id/iv_outerWear3"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+                    <ImageView
+                        android:id="@+id/iv_neckWear3"
+                        android:layout_width="117dp"
+                        android:layout_height="170dp"
+                        android:gravity="center"
+                        android:src="@drawable/img_empty" />
+                </FrameLayout>
             </LinearLayout>
         </LinearLayout>
 
