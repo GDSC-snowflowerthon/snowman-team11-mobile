@@ -1,6 +1,8 @@
 package com.snowflowerthon.snowman.data
 
 import com.snowflowerthon.snowman.data.dto.BaseResponseDto
+import com.snowflowerthon.snowman.data.dto.request.LoginRequsetDto
+import com.snowflowerthon.snowman.data.dto.request.LoginResponseDto
 import com.snowflowerthon.snowman.data.dto.request.VoteRequsetDto
 import retrofit2.Call
 import retrofit2.http.Body
@@ -17,5 +19,10 @@ interface ApiService {
                     @Body request: VoteRequsetDto)
             : Call<BaseResponseDto<String?>>
 
+
+    @POST("/api/v1/auth/login")
+    fun loginKakao(
+        @Body request: LoginRequsetDto
+    ): LoginResponseDto
 
 }

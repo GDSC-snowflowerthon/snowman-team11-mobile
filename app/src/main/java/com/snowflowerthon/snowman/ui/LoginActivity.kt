@@ -4,7 +4,6 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.snowflowerthon.snowman.R
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
@@ -12,12 +11,13 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
-import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
+import com.snowflowerthon.snowman.data.ApiService
+import com.snowflowerthon.snowman.data.RetrofitClient
+import com.snowflowerthon.snowman.data.dto.request.LoginRequsetDto
 import com.snowflowerthon.snowman.databinding.ActivityLoginBinding
 import com.snowflowerthon.snowman.databinding.ActivityLoginBinding.inflate
 import kotlinx.coroutines.launch
-import retrofit2.Response
 
 
 class LoginActivity : AppCompatActivity() {
@@ -28,7 +28,6 @@ class LoginActivity : AppCompatActivity() {
         lateinit var kakaoCallback: (OAuthToken?, Throwable?) -> Unit
         binding = inflate(layoutInflater)
         setContentView(binding.root)
-
 
         // SharedPreferences 안에 값이 저장되어 있을 때-> Login 패스하기
         if (MySharedPreferences.getProviderId(this).isNotBlank()) {
@@ -46,9 +45,7 @@ class LoginActivity : AppCompatActivity() {
         val context = this
 
 
-        binding.btnKakaoLogin.setOnClickListener{
-
-
+        binding.btnKakaoLogin.setOnClickListener {
             Log.d("post", "버튼 클릭")
             lifecycleScope.launch {
                 try {
@@ -72,54 +69,20 @@ class LoginActivity : AppCompatActivity() {
     private fun postUserInfo() {
         UserApiClient.instance.me { user, error ->
             if (user != null) {
-                // 유저의 아이디
+                // 유저의 아이디. 프로바이더아이디 받아옴
                 Log.d(TAG, "invoke: id =" + user.id)
                 val providerID = user.id.toString()
-                // 유저의 이메일
-                Log.d(TAG, "invoke: email =" + user.kakaoAccount!!.email)
-                val email = user.kakaoAccount!!.email.toString()
-
+                MySharedPreferences.setProviderId(this@LoginActivity, providerID)
 
                 val intent = Intent(this, MainActivity::class.java)
 
-                val service = nonRetrofit.create(OauthService::class.java)
-                service.loginWithKakao(LoginWithKakaoRequestDto(email,providerID))
-                    .enqueue(object : Callback<TokenResponseDto> {
-                        override fun onResponse(
-                            call: Call<TokenResponseDto>,
-                            response: Response<TokenResponseDto>
-                        ) {
-                            if (response.isSuccessful) {
-                                if (response.code() == 200) {
-                                    Log.d("post", "onResponse 성공: " + response.body().toString())
+                val retrofitAPI = RetrofitClient.getInstance().create(ApiService::class.java)
 
-                                    /*자동 로그인*/
-                                    MySharedPreferences.setProviderId(this@LoginActivity,email)
-
-                                    /*토큰 저장*/
-                                    App.token_prefs.accessToken = response.body()!!.accessToken
-                                    App.token_prefs.refreshToken =
-                                        response.body()!!.refreshToken//헤더에 붙일 토큰 저장
-
-                                    Toast.makeText(this@LoginActivity, "$email 계정으로 로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
-                                    startActivity(intent)  // 화면 전환을 시켜줌
-                                    finish()
-                                } else {
-                                    Log.d("post", "onResponse 오류: " + response.body().toString())
-                                    Toast.makeText(this@LoginActivity, "error: " + response.message(), Toast.LENGTH_SHORT).show()
-                                }
-                            }
-                        }
-
-                        override fun onFailure(call: Call<TokenResponseDto>, t: Throwable) {
-                            Log.d("post", "onFailure 에러: " + t.message.toString())
-                        }
-                    })
             }
+
+            val providerId = MySharedPreferences.getProviderId(this@LoginActivity).toLong()
+            val retrofitAPI = RetrofitClient.getInstance().create(ApiService::class.java)
+            retrofitAPI.loginKakao(LoginRequsetDto(providerId))
         }
-
-
-
-
     }
 }
