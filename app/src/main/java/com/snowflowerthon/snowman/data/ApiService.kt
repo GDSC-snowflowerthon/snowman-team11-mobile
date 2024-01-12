@@ -46,7 +46,7 @@ interface ApiService {
 
     @GET("/api/v1/weathers") //날씨 정보 조회
     fun getWeather(@Header("Authorization") token: String,
-                   @Query("latitude") latitude: String,
-                   @Query("longitude") longitude: String)
+                   @Query("latitude") latitude: Double,
+                   @Query("longitude") longitude: Double)
     : Call<BaseResponseDto<WeatherResponseDto>>
 }
