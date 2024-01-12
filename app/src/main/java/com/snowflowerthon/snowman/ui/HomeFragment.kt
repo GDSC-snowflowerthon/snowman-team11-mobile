@@ -266,6 +266,7 @@ class HomeFragment : Fragment() {
             Weather.SNOW.toString() -> {
                 binding.dropSnowball.visibility = View.VISIBLE
                 binding.dropRaindrop.visibility = View.GONE
+                binding.ivCurrentHand.setImageResource(R.drawable.img_hand)
             }
             Weather.CLEAR.toString() -> {
                 binding.dropRaindrop.visibility = View.GONE

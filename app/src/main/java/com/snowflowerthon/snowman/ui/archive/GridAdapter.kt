@@ -20,7 +20,7 @@ class GridAdapter(private val dataList: List<VoteHistory>) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(position: Int) {
-            binding.tvTime.text = dataList[position].voteTime
+//            binding.tvTime.text = dataList[position].voteTime
 
             when (dataList[position].weatherStatus) {
                 Weather.CLEAR.toString() -> {

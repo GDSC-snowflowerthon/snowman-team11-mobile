@@ -91,6 +91,7 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/myPagetabLayout"
+            android:background="@drawable/selector_round"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             app:tabGravity="fill"

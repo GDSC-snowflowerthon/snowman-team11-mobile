@@ -114,7 +114,7 @@ class DetailActivity : AppCompatActivity() {
                     binding.inBack.tvLocation.text = data?.location.toString()
                     binding.inBack.tvTime.text = data?.voteTime.toString()
                     binding.inBack.tvId.text = data?.nickname.toString()
-                    binding.inBack.tvTemperature.text = data?.temperature.toString()
+                    binding.inBack.tvTemperature.text = data?.temperature.toString()+"°"
 
 
                 } else {
