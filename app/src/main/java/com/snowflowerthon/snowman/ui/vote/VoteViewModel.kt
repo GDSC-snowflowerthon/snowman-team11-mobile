@@ -2,7 +2,16 @@ package com.snowflowerthon.snowman.ui.vote
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.snowflowerthon.snowman.data.enums.Clothes
 
-class SharedViewModel : ViewModel() {
-    val variableX = MutableLiveData<Boolean>()
+class VoteViewModel : ViewModel() {
+
+    val selectedOuterwear = MutableLiveData<Clothes>()
+
+    val selectedInnerwear = MutableLiveData<Clothes>()
+
+    val selectedItem = MutableLiveData<Clothes>()
+
+    val selectedMuffler = MutableLiveData<Clothes>()
+
 }
