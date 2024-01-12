@@ -27,7 +27,6 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 
-
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -75,54 +74,20 @@ class HomeFragment : Fragment() {
         var now = LocalDateTime.now().format(dateTimeFormat)
 
 //        binding.tv.text = "위도:${currentLocation?.latitude} 경도:${currentLocation?.longitude}\n$now"
+//
+//        val updateDuringRuntime = object : Runnable {
+//            override fun run() {
+//                // Update the time in the TextView
+//                val now = LocalDateTime.now().format(dateTimeFormat)
+//
+////                postData(currentLocation!!.latitude,currentLocation!!.longitude)
+//                // Schedule the next update in 1 second (1000 milliseconds)
+//                handler.postDelayed(this, 1000)
+//            }
+//        }
+        postData(37.556481, 127.0045783)
 
-        val updateDuringRuntime = object : Runnable {
-            override fun run() {
-                // Update the time in the TextView
-                val now = LocalDateTime.now().format(dateTimeFormat)
-//                binding.tvCurrentInfo.text = "위도:${currentLocation?.latitude} 경도:${currentLocation?.longitude}\n$now"
-
-//                latitude = currentLocation?.latitude!!
-//                longitude = currentLocation?.longitude!!
-                val token ="Bearer eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsIlJPTEVfVVNFUiI6IlVTRVIiLCJpYXQiOjE3MDUwNjY0NDAsImV4cCI6MTcwNTc4NjQ0MH0.IXB0cUQzgivyInhz4C_w58iIpDDpL8uafUsSSurxoZ4-49pUXuQq0eKAbJgSXs86iRMSvN_4cShcWiaxWMZpzw"
-                val retrofitAPI = RetrofitClient.getInstance().create(ApiService::class.java)
-                retrofitAPI.getWeather(token, currentLocation?.latitude!!, currentLocation?.longitude!!)
-                    .enqueue(object : retrofit2.Callback<BaseResponseDto<WeatherResponseDto>> {
-                        override fun onResponse(call: Call<BaseResponseDto<WeatherResponseDto>>, response: Response<BaseResponseDto<WeatherResponseDto>>) {
-                            if (response.isSuccessful) {
-                                // TODO: 서버 응답을 처리
-//                                Log.d("Home",latitude.toString()+longitude.toString())
-                                Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
-
-                                var data = response.body()?.data
-
-
-                                binding.tvLocation.text = data?.location.toString()
-
-                                binding.tvNextInfoText1.text = data?.firstBranch?.branchTime.toString()
-                                binding.tvNextInfoText2.text = data?.secondBranch?.branchTime.toString()
-                                binding.tvNextInfoText3.text = data?.thirdBranch?.branchTime.toString()
-
-
-                            } else {
-                                // TODO: 서버 에러 처리
-                                Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
-                                Toast.makeText(context, "정보 불러오기를 실패했어요.", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-
-                        override fun onFailure(call: Call<BaseResponseDto<WeatherResponseDto>>, t: Throwable) {
-                            // TODO: 통신 실패 처리
-//                    Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
-                            Toast.makeText(context, "정보 불러오기를 실패했어요.", Toast.LENGTH_SHORT).show()
-                        }
-                    })
-                // Schedule the next update in 1 second (1000 milliseconds)
-                handler.postDelayed(this, 1000)
-            }
-        }
-
-        handler.postDelayed(updateDuringRuntime, 1000)
+//        handler.postDelayed(updateDuringRuntime, 1000)
 
 
 
@@ -130,6 +95,48 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         return binding.root
     }
+
+    fun postData(latitude: Double, longitude: Double) {
+        val retrofitAPI = RetrofitClient.getInstance().create(ApiService::class.java)
+        retrofitAPI.getWeather(MySharedPreferences.getToken(requireContext()),latitude, longitude)
+
+            .enqueue(object : retrofit2.Callback<BaseResponseDto<WeatherResponseDto>> {
+                override fun onResponse(call: Call<BaseResponseDto<WeatherResponseDto>>, response: Response<BaseResponseDto<WeatherResponseDto>>) {
+                    if (response.isSuccessful) {
+                        // TODO: 서버 응답을 처리
+//                                Log.d("Home",latitude.toString()+longitude.toString())
+                        Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
+
+                        var data = response.body()?.data
+
+
+                        binding.tvLocation.text = data?.location.toString()
+
+                        binding.tvNextInfoText1.text = data?.firstBranch?.branchTime.toString()
+                        binding.tvNextInfoText2.text = data?.secondBranch?.branchTime.toString()
+                        binding.tvNextInfoText3.text = data?.thirdBranch?.branchTime.toString()
+
+                        binding.tvCurrentTemperature.text = "${data?.temperature.toString()}°"
+
+                        binding.tvTemperature1.text = "${data?.firstBranch?.highestTemperature}°/${data?.firstBranch?.lowestTemperature}°"
+                        binding.tvTemperature2.text = "${data?.secondBranch?.highestTemperature}°/${data?.secondBranch?.lowestTemperature}°"
+                        binding.tvTemperature3.text = "${data?.thirdBranch?.highestTemperature}°/${data?.thirdBranch?.lowestTemperature}°"
+
+                    } else {
+                        // TODO: 서버 에러 처리
+                        Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
+                        Toast.makeText(context, "정보 불러오기를 실패했어요.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<BaseResponseDto<WeatherResponseDto>>, t: Throwable) {
+                    // TODO: 통신 실패 처리
+//                    Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
+                    Toast.makeText(context, "정보 불러오기를 실패했어요.", Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
+
 //
 //    fun bindData(response: Response<BaseResponseDto<WeatherResponseDto>>) {
 //        var data = response.body()?.data

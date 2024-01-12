@@ -29,5 +29,14 @@ object MySharedPreferences {
         editor.commit()
     }
 
+    fun getToken(context: Context): String {
+        val prefs: SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val token = prefs.getString("MY_TOKEN", "").toString()
+        return if (token.isNotEmpty()) {
+            "Bearer $token"
+        } else {
+            ""
+        }
+    }
 
 }
