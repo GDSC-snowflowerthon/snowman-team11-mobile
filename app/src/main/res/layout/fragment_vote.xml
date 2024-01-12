@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.MainActivity"
+    android:background="@drawable/img_home_background">
 
     <ImageButton
         android:id="@+id/btn_custom_reset"
@@ -13,20 +14,22 @@
         android:layout_height="24dp"
         android:background="#00FF0000"
         android:scaleType="fitCenter"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="40dp"
         android:src="@drawable/ic_reset"
         app:layout_constraintBottom_toBottomOf="@+id/btn_custom_save"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_custom_save" />
+        app:layout_constraintTop_toTopOf="@+id/btn_custom_save"
+        app:tint="@color/white" />
 
     <Button
         android:id="@+id/btn_custom_save"
         android:layout_width="110dp"
         android:layout_height="50dp"
         android:layout_gravity="right|top"
+        android:layout_margin="20dp"
         android:background="#00FF0000"
         android:text="저장하기"
-        android:textColor="#000000"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
