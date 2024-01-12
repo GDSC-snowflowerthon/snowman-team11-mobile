@@ -21,7 +21,6 @@
         android:theme="@style/Theme.Snowman"
         tools:targetApi="31">
         <activity
-
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
             <intent-filter>
@@ -36,6 +35,12 @@
 
         <activity
             android:name=".ui.MainActivity"
+            android:exported="true" >
+
+        </activity>
+
+        <activity
+            android:name=".ui.LoginActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

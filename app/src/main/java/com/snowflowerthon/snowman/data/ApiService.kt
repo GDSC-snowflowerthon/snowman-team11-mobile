@@ -4,6 +4,7 @@ import com.snowflowerthon.snowman.data.dto.BaseResponseDto
 import com.snowflowerthon.snowman.data.dto.request.LoginRequestDto
 import com.snowflowerthon.snowman.data.dto.request.VoteRequsetDto
 import com.snowflowerthon.snowman.data.dto.response.ArchiveDetailiResponseDto
+import com.snowflowerthon.snowman.data.dto.response.LoginResponseDto
 import com.snowflowerthon.snowman.data.dto.response.VoteHistory
 import com.snowflowerthon.snowman.data.dto.response.WeatherResponseDto
 import retrofit2.Call
@@ -18,7 +19,7 @@ import retrofit2.http.Query
 interface ApiService {
     @POST("/api/v1/auth/login") //로그인
     fun login(@Body request: LoginRequestDto)
-            : Call<BaseResponseDto<String?>>
+            : Call<BaseResponseDto<LoginResponseDto?>>
 
     @POST("/api/v1/weathers/{regionId}/poll") //투표하기
     fun voteClothes(@Header("Authorization") token: String,
