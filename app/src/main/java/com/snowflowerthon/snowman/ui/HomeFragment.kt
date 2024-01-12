@@ -127,6 +127,9 @@ class HomeFragment : Fragment() {
                         binding.tvTemperature2.text = "${data?.secondBranch?.highestTemperature}°/${data?.secondBranch?.lowestTemperature}°"
                         binding.tvTemperature3.text = "${data?.thirdBranch?.highestTemperature}°/${data?.thirdBranch?.lowestTemperature}°"
 
+                        // 날씨 변경
+                        // changeWeather(data?.weatherStatus.toString())
+                        changeWeather(Weather.SNOW.toString())
                         when (data?.weatherStatus) {
                             Weather.CLEAR.toString() -> { binding.ivWeather.setImageResource(R.drawable.img_sunny) }
                             Weather.RAIN.toString() -> { binding.ivWeather.setImageResource(R.drawable.ic_rainy) }
@@ -251,6 +254,24 @@ class HomeFragment : Fragment() {
                     Toast.makeText(context, "정보 불러오기를 실패했어요.", Toast.LENGTH_SHORT).show()
                 }
             })
+    }
+
+    // 배경 날씨 변경
+    private fun changeWeather(weather: String) {
+        when (weather) {
+            Weather.RAIN.toString() -> {
+                binding.dropSnowball.visibility = View.GONE
+                binding.dropRaindrop.visibility = View.VISIBLE
+            }
+            Weather.SNOW.toString() -> {
+                binding.dropSnowball.visibility = View.VISIBLE
+                binding.dropRaindrop.visibility = View.GONE
+            }
+            Weather.CLEAR.toString() -> {
+                binding.dropRaindrop.visibility = View.GONE
+                binding.dropSnowball.visibility = View.GONE
+            }
+        }
     }
 }
 
