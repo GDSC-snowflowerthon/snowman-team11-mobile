@@ -2,6 +2,7 @@ package com.snowflowerthon.snowman.ui
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.kakao.sdk.auth.model.OAuthToken
 
 object MySharedPreferences {
 
@@ -21,6 +22,12 @@ object MySharedPreferences {
         return prefs.getString("MY_PROVIDERID", "").toString()
     }
 
+    fun setToken(context: Context, accessToken: String) {
+        val prefs: SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = prefs.edit()
+        editor.putString("MY_TOKEN", accessToken)
+        editor.commit()
+    }
 
 
 }
