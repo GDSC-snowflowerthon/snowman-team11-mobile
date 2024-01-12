@@ -75,6 +75,8 @@ class LoginActivity : AppCompatActivity() {
                 // 유저의 아이디. 프로바이더아이디 받아옴
                 Log.d(TAG, "invoke: id =" + user.id)
                 val providerID = user.id
+
+
                 MySharedPreferences.setProviderId(this@LoginActivity, providerID)
 
                 val intent = Intent(this, MainActivity::class.java)
@@ -84,6 +86,8 @@ class LoginActivity : AppCompatActivity() {
                     override fun onResponse(call: Call<BaseResponseDto<LoginResponseDto?>>, response: retrofit2.Response<BaseResponseDto<LoginResponseDto?>>) {
                         if (response.isSuccessful) {
                             // TODO: 서버 응답을 처리
+
+                            MySharedPreferences.setToken(this@LoginActivity, response.body()?.data?.accessToken.toString())
                             Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
                             Toast.makeText(this@LoginActivity, "로그인이 완료되었어요.", Toast.LENGTH_SHORT).show()
                             startActivity(intent)
