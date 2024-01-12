@@ -1,22 +1,16 @@
 package com.snowflowerthon.snowman.ui.archive
 
-import android.app.AlertDialog
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ListAdapter
-import android.widget.TextView
-import androidx.recyclerview.widget.DiffUtil
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.snowflowerthon.snowman.PopupActivity
 import com.snowflowerthon.snowman.R
-import com.snowflowerthon.snowman.data.dto.response.ArchiveDetailiResponseDto
 import com.snowflowerthon.snowman.data.dto.response.VoteHistory
 import com.snowflowerthon.snowman.data.enums.Clothes
 import com.snowflowerthon.snowman.data.enums.Weather
 import com.snowflowerthon.snowman.databinding.ItemCardBinding
-
 
 
 class GridAdapter(private val dataList: List<VoteHistory>) :
@@ -25,10 +19,8 @@ class GridAdapter(private val dataList: List<VoteHistory>) :
     inner class ViewHolder(private val binding: ItemCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-
         fun bind(position: Int) {
-
-            binding.tvTime.text = dataList[position].voteTime
+//            binding.tvTime.text = dataList[position].voteTime
 
             when (dataList[position].weatherStatus) {
                 Weather.CLEAR.toString() -> {
@@ -95,6 +87,13 @@ class GridAdapter(private val dataList: List<VoteHistory>) :
                     binding.ivTopWear.setImageResource(R.drawable.img_neat)
                 }
             }
+
+            binding.cardView.setOnClickListener{
+                val intent = Intent(binding.cardView.context, DetailActivity::class.java)
+                intent.putExtra("archiveId", dataList[position].archiveId)
+                Log.d("archiveId",dataList[position].archiveId.toString())
+                ContextCompat.startActivity(binding.cardView.context, intent, null)
+            }
         }
     }
 
@@ -108,14 +107,7 @@ class GridAdapter(private val dataList: List<VoteHistory>) :
 
         return dataList.size
     }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(position)
-        holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context, PopupActivity::class.java)
-            intent.putExtra("key", position)
-            holder.itemView.context.startActivity(intent)
-        }
-
     }
 }
