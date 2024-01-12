@@ -1,20 +1,33 @@
 package com.snowflowerthon.snowman.ui
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.snowflowerthon.snowman.R
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
+import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.KakaoSdk
+import com.kakao.sdk.common.model.ClientError
+import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.common.util.Utility
+import com.kakao.sdk.user.UserApiClient
+import com.snowflowerthon.snowman.databinding.ActivityLoginBinding
+import com.snowflowerthon.snowman.databinding.ActivityLoginBinding.inflate
+import kotlinx.coroutines.launch
+import retrofit2.Response
 
 
 class LoginActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         KakaoSdk.init(this, "69a3cfd1a816a40b18dc20cd4b8a300d")
-        setContentView(R.layout.activity_login)
+        lateinit var kakaoCallback: (OAuthToken?, Throwable?) -> Unit
+        binding = inflate(layoutInflater)
+        setContentView(binding.root)
 
 
         // SharedPreferences 안에 값이 저장되어 있을 때-> Login 패스하기
@@ -33,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
         val context = this
 
 
-        binding.setOnClickListener {
+        binding.btnKakaoLogin.setOnClickListener{
 
 
             Log.d("post", "버튼 클릭")
@@ -81,20 +94,19 @@ class LoginActivity : AppCompatActivity() {
                                     Log.d("post", "onResponse 성공: " + response.body().toString())
 
                                     /*자동 로그인*/
-                                    MySharedPreferences.setUserEmail(this@SocialLoginActivity,email)
-                                    MySharedPreferences.setUserPlatform(this@SocialLoginActivity,"KAKAO")
+                                    MySharedPreferences.setProviderId(this@LoginActivity,email)
 
                                     /*토큰 저장*/
                                     App.token_prefs.accessToken = response.body()!!.accessToken
                                     App.token_prefs.refreshToken =
                                         response.body()!!.refreshToken//헤더에 붙일 토큰 저장
 
-                                    Toast.makeText(this@SocialLoginActivity, "$email 계정으로 로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this@LoginActivity, "$email 계정으로 로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
                                     startActivity(intent)  // 화면 전환을 시켜줌
                                     finish()
                                 } else {
                                     Log.d("post", "onResponse 오류: " + response.body().toString())
-                                    Toast.makeText(this@SocialLoginActivity, "error: " + response.message(), Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this@LoginActivity, "error: " + response.message(), Toast.LENGTH_SHORT).show()
                                 }
                             }
                         }
