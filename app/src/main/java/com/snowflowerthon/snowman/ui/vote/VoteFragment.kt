@@ -80,7 +80,7 @@ class VoteFragment : Fragment() {
                     } else {
                         // TODO: 서버 에러 처리
                         Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
-                        Toast.makeText(context, "투표가 실패했어ㄹ.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "투표가 실패했어요.", Toast.LENGTH_SHORT).show()
                     }
                 }
 
