@@ -59,6 +59,9 @@ dependencies {
     /*카카오 로그인 모듈*/
     implementation 'com.kakao.sdk:v2-user:2.19.0'
 
+    /* 눈, 비 애니메이션 */
+    implementation 'com.github.jetradarmobile:android-snowfall:1.2.1'
+
 
 
 //    implementation 'com.android.support:design:34.0.0'
