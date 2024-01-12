@@ -8,6 +8,6 @@ data class VoteHistory(
     val outerWear: String,
     val temperature: Int,
     val topWear: String,
-    val voteTime: List<Int>,
+    val voteTime: String,
     val weatherStatus: String
 )

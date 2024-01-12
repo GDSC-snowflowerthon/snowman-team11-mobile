@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.snowflowerthon.snowman.R
+import com.snowflowerthon.snowman.ui.archive.ArchiveFragment
 import com.snowflowerthon.snowman.ui.vote.VoteFragment
 
 class MainActivity : AppCompatActivity() {
