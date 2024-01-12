@@ -40,10 +40,6 @@ class MainActivity : AppCompatActivity() {
                     val voteFragment = VoteFragment()
                     supportFragmentManager.beginTransaction().replace(R.id.fl_container, voteFragment).commit()
                 }
-                R.id.tab_profile -> {
-                    val profileFragment = ProfileFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.fl_container, profileFragment).commit()
-                }
             }
             true
         }
