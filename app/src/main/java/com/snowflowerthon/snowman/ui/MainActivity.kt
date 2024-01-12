@@ -1,5 +1,6 @@
 package com.snowflowerthon.snowman.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,6 +8,7 @@ import com.snowflowerthon.snowman.R
 import com.snowflowerthon.snowman.ui.vote.VoteFragment
 import com.kakao.sdk.common.util.Utility
 import android.util.Log
+import com.kakao.sdk.user.UserApiClient
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,8 +42,13 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             true
-        }
+            }
             selectedItemId = R.id.tab_home
         }
+
+
     }
 }
+
+
+
