@@ -1,9 +1,11 @@
 package com.snowflowerthon.snowman.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.snowflowerthon.snowman.R
 import android.util.Log
+import android.widget.Toast
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.util.Utility
 
@@ -16,7 +18,7 @@ class LoginActivity : AppCompatActivity() {
 
 
         // SharedPreferences 안에 값이 저장되어 있을 때-> Login 패스하기
-        if (MySharedPreferences.getUserEmail(this).isNotBlank()) {
+        if (MySharedPreferences.getProviderId(this).isNotBlank()) {
             // SharedPreferences 안에 값이 저장되어 있을 때 -> MainActivity로 이동
             Toast.makeText(
                 this,
@@ -31,7 +33,8 @@ class LoginActivity : AppCompatActivity() {
         val context = this
 
 
-        binding.mcvKakaoLogin.setOnClickListener {
+        binding.setOnClickListener {
+
 
             Log.d("post", "버튼 클릭")
             lifecycleScope.launch {
