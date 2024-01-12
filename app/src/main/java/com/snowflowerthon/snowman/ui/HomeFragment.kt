@@ -73,11 +73,14 @@ class HomeFragment : Fragment() {
             )
         }
 
+        // 현재 위치 받아오기
         var currentLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
 
+        // 시간 받아와서 포맷팅
         val dateTimeFormat = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm:ss")
         var now = LocalDateTime.now().format(dateTimeFormat)
 
+        // 텍스트 변경
         binding.tvCurrentInfo.text = "위도:${currentLocation?.latitude} 경도:${currentLocation?.longitude}\n$now"
 
         val updateDuringRuntime = object : Runnable {
