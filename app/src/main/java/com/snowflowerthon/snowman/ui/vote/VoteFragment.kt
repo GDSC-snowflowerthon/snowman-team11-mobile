@@ -24,13 +24,6 @@ import retrofit2.Call
 
 class VoteFragment : Fragment() {
 
-    var topWear = Clothes.NEAT
-    var neckWear = Clothes.NONE
-    var headWear = Clothes.NONE
-    var outerWear = Clothes.NONE
-
-    val codi = VoteRequsetDto(headWear,neckWear,outerWear,topWear)
-
 
     private var _binding: FragmentVoteBinding? = null
     private val binding get() = _binding!!
@@ -60,6 +53,12 @@ class VoteFragment : Fragment() {
         }.attach()
 
 
+        var topWear = Clothes.NEAT
+        var neckWear = Clothes.NONE
+        var headWear = Clothes.NONE
+        var outerWear = Clothes.NONE
+
+
         binding.btnCustomReset.setOnClickListener {
             binding.ivOuterWear.setImageResource(R.drawable.img_empty)
             binding.ivTopWear.setImageResource(R.drawable.img_neat)
@@ -68,10 +67,31 @@ class VoteFragment : Fragment() {
 
         }
 
+
         binding.btnCustomSave.setOnClickListener {
+            val codi = VoteRequsetDto(headWear,neckWear,outerWear,topWear)
+            val token ="Bearer eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsIlJPTEVfVVNFUiI6IlVTRVIiLCJpYXQiOjE3MDUwNjY0NDAsImV4cCI6MTcwNTc4NjQ0MH0.IXB0cUQzgivyInhz4C_w58iIpDDpL8uafUsSSurxoZ4-49pUXuQq0eKAbJgSXs86iRMSvN_4cShcWiaxWMZpzw"
+            val retrofitAPI = RetrofitClient.getInstance().create(ApiService::class.java)
+            retrofitAPI.voteClothes(token,1,  codi).enqueue(object : retrofit2.Callback<BaseResponseDto<String?>> {
+                override fun onResponse(call: Call<BaseResponseDto<String?>>, response: retrofit2.Response<BaseResponseDto<String?>>) {
+                    if (response.isSuccessful) {
+                        val baseResponse = response.body()
+                        // TODO: 서버 응답을 처리
+                        Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
+                        Toast.makeText(context, "투표가 완료되었어요.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        // TODO: 서버 에러 처리
+                        Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
+                        Toast.makeText(context, "투표가 실패했어요.", Toast.LENGTH_SHORT).show()
+                    }
+                }
 
-            postData()
-
+                override fun onFailure(call: Call<BaseResponseDto<String?>>, t: Throwable) {
+                    // TODO: 통신 실패 처리
+//                    Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
+                    Toast.makeText(context, "투표가 실패했어요.", Toast.LENGTH_SHORT).show()
+                }
+            })
         }
 
         // SharedViewModel을 가져옵니다.
@@ -175,34 +195,6 @@ class VoteFragment : Fragment() {
                 }
 
                 else -> {Clothes.NONE}
-            }
-        })
-    }
-
-    fun postData(){
-        //임시 토큰
-        val token ="Bearer eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjIsIlJPTEVfVVNFUiI6IlVTRVIiLCJpYXQiOjE3MDUwMDA4NTksImV4cCI6MTcwNTcyMDg1OX0.bctp9AioWRyjIK_wTTJR-3ahM9LpqfO1AqqsphtLBScHF0w8jG-n1uIkexsVHHjh5jA0fx4A-7RaPIkOQfkA5w"
-
-
-        val retrofitAPI = RetrofitClient.getInstance().create(ApiService::class.java)
-        retrofitAPI.voteClothes(token,1,  codi).enqueue(object : retrofit2.Callback<BaseResponseDto<String?>> {
-            override fun onResponse(call: Call<BaseResponseDto<String?>>, response: retrofit2.Response<BaseResponseDto<String?>>) {
-                if (response.isSuccessful) {
-                    val baseResponse = response.body()
-                    // TODO: 서버 응답을 처리
-                    Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
-                    Toast.makeText(context, "투표가 완료되었어요.", Toast.LENGTH_SHORT).show()
-                } else {
-                    // TODO: 서버 에러 처리
-                    Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
-                    Toast.makeText(context, "투표가 실패했어요.", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<BaseResponseDto<String?>>, t: Throwable) {
-                // TODO: 통신 실패 처리
-//                    Log.d("VoteFragment", response.body()?.success.toString() + response.body()?.data.toString())
-                Toast.makeText(context, "투표가 실패했어요.", Toast.LENGTH_SHORT).show()
             }
         })
     }

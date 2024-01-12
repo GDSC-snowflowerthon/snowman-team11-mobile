@@ -31,6 +31,29 @@ class GridAdapter(private val dataList: List<VoteHistory>) :
                 Weather.RAIN.toString() -> { binding.ivWeather.setImageResource(R.drawable.ic_rainy) }
                 Weather.SNOW.toString() -> { binding.ivWeather.setImageResource(R.drawable.img_snowy) }
             }
+
+            when (dataList[position].headWear){
+                Clothes.BALACLAVA.toString() -> { binding.ivHeadWear.setImageResource(R.drawable.img_balaclava) }
+                Clothes.EAR_MUFFS.toString() -> { binding.ivHeadWear.setImageResource(R.drawable.img_ear) }
+                Clothes.NONE.toString() -> { binding.ivHeadWear.setImageResource(R.drawable.img_empty) }
+            }
+
+            when (dataList[position].neckWear){
+                Clothes.SCARF.toString() -> { binding.ivNeckWear.setImageResource(R.drawable.img_muffler) }
+                Clothes.NONE.toString() -> { binding.ivNeckWear.setImageResource(R.drawable.img_empty) }
+            }
+
+            when (dataList[position].outerWear){
+                Clothes.SHORT_PADDING.toString() -> { binding.ivOuterWear.setImageResource(R.drawable.img_short_padding) }
+                Clothes.LONG_PADDING.toString() -> { binding.ivOuterWear.setImageResource(R.drawable.img_long_padding) }
+                Clothes.COAT.toString() -> { binding.ivOuterWear.setImageResource(R.drawable.img_coat) }
+                Clothes.NONE.toString() -> { binding.ivOuterWear.setImageResource(R.drawable.img_empty) }
+            }
+
+            when (dataList[position].topWear){
+                Clothes.LONG_SLEEVE.toString() -> { binding.ivTopWear.setImageResource(R.drawable.img_long_shirt) }
+                Clothes.NEAT.toString() -> { binding.ivTopWear.setImageResource(R.drawable.img_neat) }
+            }
         }
     }
 

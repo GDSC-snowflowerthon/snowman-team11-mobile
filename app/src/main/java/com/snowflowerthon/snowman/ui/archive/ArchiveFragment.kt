@@ -47,7 +47,7 @@ class ArchiveFragment : Fragment() {
 
     private fun setAdapter(reviewList: List<VoteHistory>) {
         val gridAdapter = GridAdapter(reviewList)
-        val gridLayoutManager = GridLayoutManager(activity, 3)
+        val gridLayoutManager = GridLayoutManager(activity, 2)
 
         binding.rvArchive.adapter = gridAdapter
         binding.rvArchive.layoutManager = gridLayoutManager
@@ -56,8 +56,7 @@ class ArchiveFragment : Fragment() {
 
     private fun lodeData(){
             //임시 토큰
-            val token ="Bearer eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsIlJPTEVfVVNFUiI6IlVTRVIiLCJpYXQiOjE3MDUwNTk1MzUsImV4cCI6MTcwNTc3OTUzNX0.8z7d1-XBzPamyW2k6ymJm12e7uJGhcBND5FNGdkRw5GobChVe-_aS7awPk5m_qWGpB2armowe9fBvoSZGI2VHw"
-
+            val token ="Bearer eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsIlJPTEVfVVNFUiI6IlVTRVIiLCJpYXQiOjE3MDUwNjY0NDAsImV4cCI6MTcwNTc4NjQ0MH0.IXB0cUQzgivyInhz4C_w58iIpDDpL8uafUsSSurxoZ4-49pUXuQq0eKAbJgSXs86iRMSvN_4cShcWiaxWMZpzw"
             val retrofitAPI = RetrofitClient.getInstance().create(ApiService::class.java)
             retrofitAPI.archive(token).enqueue(object : retrofit2.Callback<BaseResponseDto<ArchiveDetailiResponseDto?>> {
                 override fun onResponse(call: Call<BaseResponseDto<ArchiveDetailiResponseDto?>>, response: retrofit2.Response<BaseResponseDto<ArchiveDetailiResponseDto?>>) {
