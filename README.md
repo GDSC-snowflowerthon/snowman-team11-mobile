@@ -1,4 +1,50 @@
-# snowman-team11-mobile
+# pengdolli-team11-mobile
+
+## 수상
+- 🏅GDSC 연합 해커톤: 눈꽃톤 최우수상 
+## 팀원
+### 안드로이드
+|유진|박정민|황서아|
+|:------:|:---:|:------:|
+|`투표하기` `모아보기` `상세보기`|`홈` `3D 리소스 제작`|`카카오로그인`|
+### 백엔드
+|강승준|임형규|
+|:------:|:---:|
+
+## 서비스 소개
+- **펭돌이** : 겨울철 옷차림 추천 서비스
+![눈꽃톤 11팀-01](https://github.com/GDSC-snowflowerthon/pengdolli-team11-mobile/assets/94737714/80107c3c-02b5-4690-a3c2-bdd70c811680)
+![눈꽃톤 11팀-02](https://github.com/GDSC-snowflowerthon/pengdolli-team11-mobile/assets/94737714/bb9871d1-02e6-4060-b5f0-ab1ad8fa1c3f)
+![눈꽃톤 11팀-03](https://github.com/GDSC-snowflowerthon/pengdolli-team11-mobile/assets/94737714/d379ab7b-dd50-4f32-8033-c28236d2bb3a)
+![눈꽃톤 11팀-04](https://github.com/GDSC-snowflowerthon/pengdolli-team11-mobile/assets/94737714/a2db3e2c-ab28-423b-a708-a038edfd4495)
+![눈꽃톤 11팀-05](https://github.com/GDSC-snowflowerthon/pengdolli-team11-mobile/assets/94737714/4bfe5fc3-30b7-40e3-ba36-626ac6d6e885)
+![눈꽃톤 11팀-06](https://github.com/GDSC-snowflowerthon/pengdolli-team11-mobile/assets/94737714/819a166b-7f93-42b5-8f54-126c274ac253)
+![눈꽃톤 11팀-07](https://github.com/GDSC-snowflowerthon/pengdolli-team11-mobile/assets/94737714/9964f5fa-bee1-4dc5-ac6e-07dbee7428e5)
+![눈꽃톤 11팀-08](https://github.com/GDSC-snowflowerthon/pengdolli-team11-mobile/assets/94737714/a41e34fc-22c7-4b98-8b15-acdfb811be4f)
+![눈꽃톤 11팀-09](https://github.com/GDSC-snowflowerthon/pengdolli-team11-mobile/assets/94737714/0f9ce00a-3972-46a4-a709-a187ba6977dd)
+![눈꽃톤 11팀-10](https://github.com/GDSC-snowflowerthon/pengdolli-team11-mobile/assets/94737714/c9e61fc8-c6ad-46c5-a18d-185f080f416b)
+![눈꽃톤 11팀-11](https://github.com/GDSC-snowflowerthon/pengdolli-team11-mobile/assets/94737714/e01a5d95-681b-45eb-b865-f747f1f1cde8)
+
+
+
+
+## Commit Message Convention
+
+> 커밋태그: 내용 #이슈번호  
+
+ex. `add: login 파일 추가 #20`
+
+- 파일 추가 : add
+- 버그 수정 : fix
+- 리팩터링 : refactoring
+- 파일 삭제 : remove
+- 기능 추가 : feat
+- 문서 수정 : docs
+- 주석 추가 : comment
+
+
+
+
 
 # Git convention
 
