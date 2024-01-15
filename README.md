@@ -2,6 +2,7 @@
 
 ## 수상
 - 🏅GDSC 연합 해커톤: 눈꽃톤 최우수상 
+
 ## 팀원
 ### 안드로이드
 |유진|박정민|황서아|
@@ -11,8 +12,14 @@
 |강승준|임형규|
 |:------:|:---:|
 
+
 ## 서비스 소개
-- **펭돌이** : 겨울철 옷차림 추천 서비스
+- **펭도리** : 기온에 따른 겨울철 실시간 옷차림 추천 서비스
+
+### 시연
+https://github.com/GDSC-snowflowerthon/pengdolli-team11-mobile/assets/94737714/1ea52a4b-1922-4f48-915c-097e65c77c94
+
+### 발표자료
 ![눈꽃톤 11팀-01](https://github.com/GDSC-snowflowerthon/pengdolli-team11-mobile/assets/94737714/80107c3c-02b5-4690-a3c2-bdd70c811680)
 ![눈꽃톤 11팀-02](https://github.com/GDSC-snowflowerthon/pengdolli-team11-mobile/assets/94737714/bb9871d1-02e6-4060-b5f0-ab1ad8fa1c3f)
 ![눈꽃톤 11팀-03](https://github.com/GDSC-snowflowerthon/pengdolli-team11-mobile/assets/94737714/d379ab7b-dd50-4f32-8033-c28236d2bb3a)
@@ -27,6 +34,9 @@
 
 
 
+<details>
+<summary>Convention</summary>
+<div markdown="1">
 
 ## Commit Message Convention
 
@@ -41,8 +51,6 @@ ex. `add: login 파일 추가 #20`
 - 기능 추가 : feat
 - 문서 수정 : docs
 - 주석 추가 : comment
-
-
 
 
 
@@ -154,4 +162,7 @@ UpperCamelCase 적용 하기
 1. 코드 위에 어떤 기능인지 설명 ex) 파이어베이스 연결, 좋아요 기능  
 2. 공통적으로 사용하는 변수를 제외한 애들은 선언 옆에 // 이 주석을 사용해서 설명해주기  
 3. 화면 전환 시 어느 화면에서 어느 화면으로 넘어가는지 설명  
-4. 자세하게 써주기  
+4. 자세하게 써주기
+
+</div>
+</details>
