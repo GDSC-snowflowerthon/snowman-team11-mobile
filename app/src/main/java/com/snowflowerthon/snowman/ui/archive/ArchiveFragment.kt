@@ -47,7 +47,7 @@ class ArchiveFragment : Fragment() {
 
     private fun setAdapter(reviewList: List<VoteHistory>) {
         val gridAdapter = GridAdapter(reviewList)
-        val gridLayoutManager = GridLayoutManager(activity, 2)
+        val gridLayoutManager = GridLayoutManager(activity, 3)
 
         binding.rvArchive.adapter = gridAdapter
         binding.rvArchive.layoutManager = gridLayoutManager
